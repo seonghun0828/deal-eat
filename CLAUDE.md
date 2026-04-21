@@ -22,6 +22,65 @@ Using gstack skills: After install, skills like /qa, /ship, /review, /investigat
 and /browse are available. Use /browse for all web browsing.
 Use ~/.claude/skills/gstack/... for gstack file paths (the global path).
 
+## Implementation
+
+**Project:** DealEat — Korean fast food coupon aggregator (read-only weekly feed).
+
+**Stack:** Next.js 15, App Router, TypeScript, Tailwind CSS, Vercel, Zod, Vitest + React Testing Library, Playwright (E2E).
+
+**File structure:**
+```
+deals.json                        # hand-curated weekly data (root)
+scripts/validate-deals.ts         # Zod validation — runs in CI before deploy
+app/page.tsx                      # main feed page
+components/DealCard.tsx           # single deal card
+components/FilterSortModal.tsx    # filter/sort drawer
+lib/schema.ts                     # Zod schema + Deal type + chain enum
+lib/filters.ts                    # pure filter/sort functions
+lib/isNew.ts                      # isNew(launch_date) helper
+public/logos/{chain-slug}.svg     # local SVGs, one per chain
+```
+
+**deals.json top-level shape:**
+```json
+{
+  "updated_at": "ISO timestamp (KST)",
+  "deals": [ ...Deal[] ],
+  "unavailable_chains": [ ...ChainEnum[] ]
+}
+```
+
+**Chain enum (exact strings, enforced by Zod):**
+`"McDonald's" | "Burger King" | "KFC" | "Lotteria" | "Mom's Touch" | "No Brand Burger"`
+Used for: `chain` field, `unavailable_chains[]`, and logo filename lookup.
+
+**Required deal fields:** `chain`, `deal_name`, `deal_price`, `discount_pct`, `valid_through`, `category`.
+**Optional:** `original_price`, `launch_date`, `is_relaunched`, `in_store_only`, `notes`.
+`discount_pct` is read directly from the chain app display — never computed.
+When `original_price` is present, Zod `.refine()` validates `discount_pct` is within ±1 of the computed value.
+
+**`category` enum:** `hamburger_single | hamburger_set | side | drink | combo_other`
+
+**`is_new` — computed in UI, never stored:**
+```ts
+// Compare KST date strings, not timestamps (avoids UTC/KST boundary bugs)
+const isNew = (launch_date?: string): boolean => {
+  if (!launch_date) return false;
+  const cutoff = todayKST(-14); // "YYYY-MM-DD" 14 days ago in Asia/Seoul
+  return launch_date >= cutoff;
+};
+```
+
+**Sort order for "Hamburgers First":** `hamburger_single → hamburger_set → combo_other → side → drink`. Secondary sort within each group: `discount_pct` descending.
+
+**Max price slider range:** dynamic — `Math.max(20000, Math.ceil(maxDealPrice / 1000) * 1000)`. Default value: 13,000 KRW. Touch target: 44px minimum height.
+
+**Weekly update workflow:** Remove expired deals (`valid_through < today`) → add new deals → update `updated_at` → commit → push. CI validates schema before Vercel deploys.
+
+**CI gate:** `.github/workflows/validate.yml` runs `npx tsx scripts/validate-deals.ts` on every push. Blocks deploy if deals.json is invalid or `updated_at` wasn't updated alongside `deals[]`.
+
+**Logo fallback:** `<img onError>` falls back to text chain name if SVG is missing.
+
 ## Skill routing
 
 When the user's request matches an available skill, ALWAYS invoke it using the Skill
