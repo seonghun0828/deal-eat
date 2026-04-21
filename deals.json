@@ -1,0 +1,60 @@
+{
+  "updated_at": "2026-04-21T09:00:00+09:00",
+  "deals": [
+    {
+      "chain": "McDonald's",
+      "deal_name": "빅맥 세트 할인",
+      "original_price": 8500,
+      "deal_price": 6500,
+      "discount_pct": 24,
+      "category": "hamburger_set",
+      "launch_date": "2026-04-14",
+      "is_relaunched": false,
+      "valid_through": "2026-04-28",
+      "in_store_only": true,
+      "notes": "앱 쿠폰 필요"
+    },
+    {
+      "chain": "Burger King",
+      "deal_name": "와퍼 단품 할인",
+      "original_price": 7100,
+      "deal_price": 4900,
+      "discount_pct": 31,
+      "category": "hamburger_single",
+      "launch_date": "2026-04-10",
+      "valid_through": "2026-04-28",
+      "in_store_only": true
+    },
+    {
+      "chain": "KFC",
+      "deal_name": "징거 세트 프로모션",
+      "original_price": 8900,
+      "deal_price": 6900,
+      "discount_pct": 22,
+      "category": "hamburger_set",
+      "valid_through": "2026-04-29"
+    },
+    {
+      "chain": "Mom's Touch",
+      "deal_name": "싸이버거 단품 특가",
+      "original_price": 5400,
+      "deal_price": 4200,
+      "discount_pct": 22,
+      "category": "hamburger_single",
+      "valid_through": "2026-04-27"
+    },
+    {
+      "chain": "No Brand Burger",
+      "deal_name": "NBB 어메이징 세트",
+      "original_price": 8100,
+      "deal_price": 5900,
+      "discount_pct": 27,
+      "category": "hamburger_set",
+      "launch_date": "2026-04-18",
+      "is_relaunched": true,
+      "valid_through": "2026-04-30"
+    }
+  ],
+  "unavailable_chains": ["Lotteria"]
+}
+

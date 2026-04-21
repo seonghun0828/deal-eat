@@ -1,0 +1,96 @@
+import type { Chain, Deal } from "@/lib/schema";
+import { isNew } from "@/lib/isNew";
+
+const logoMap: Record<Chain, string> = {
+  "McDonald's": "/logos/mcdonalds.svg",
+  "Burger King": "/logos/burger-king.svg",
+  KFC: "/logos/kfc.svg",
+  Lotteria: "/logos/lotteria.svg",
+  "Mom's Touch": "/logos/moms-touch.svg",
+  "No Brand Burger": "/logos/no-brand-burger.svg",
+};
+
+const priceFormatter = new Intl.NumberFormat("ko-KR");
+
+type DealCardProps = {
+  deal: Deal;
+  now?: Date;
+};
+
+export function DealCard({ deal, now = new Date() }: DealCardProps) {
+  const showBadge = isNew(deal.launch_date, now);
+  const badgeLabel = deal.is_relaunched ? "돌아왔어요" : "NEW";
+  const fallbackId = `${deal.chain}-fallback`;
+
+  return (
+    <article className="rounded-[28px] border border-[color:var(--line)] bg-[color:var(--panel)] p-5 shadow-[0_18px_50px_rgba(102,67,31,0.10)] backdrop-blur">
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex items-center gap-3">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt={`${deal.chain} logo`}
+            className="h-12 w-12 rounded-full border border-[color:var(--line)] bg-white object-contain p-2"
+            src={logoMap[deal.chain]}
+            onError={(event) => {
+              event.currentTarget.style.display = "none";
+              const next = event.currentTarget.nextElementSibling as HTMLSpanElement | null;
+              if (next) {
+                next.hidden = false;
+              }
+            }}
+          />
+          <span
+            className="hidden rounded-full border border-[color:var(--line)] bg-white px-3 py-2 text-sm font-semibold"
+            hidden
+            id={fallbackId}
+          >
+            {deal.chain}
+          </span>
+          <div>
+            <p className="text-xs uppercase tracking-[0.25em] text-[color:var(--muted)]">
+              {deal.chain}
+            </p>
+            <h2 className="mt-1 text-xl font-semibold">{deal.deal_name}</h2>
+          </div>
+        </div>
+        {showBadge ? (
+          <span className="rounded-full bg-[color:var(--accent)] px-3 py-1 text-sm font-semibold text-white">
+            {badgeLabel}
+          </span>
+        ) : null}
+      </div>
+
+      <div className="mt-5 flex items-end justify-between gap-4">
+        <div className="flex flex-wrap items-end gap-3">
+          <strong className="text-3xl font-semibold text-[color:var(--accent)]">
+            ₩{priceFormatter.format(deal.deal_price)}
+          </strong>
+          {deal.original_price ? (
+            <span className="text-sm text-[color:var(--muted)] line-through">
+              ₩{priceFormatter.format(deal.original_price)}
+            </span>
+          ) : null}
+        </div>
+        <span className="rounded-full border border-[color:var(--line)] px-3 py-1 text-sm font-semibold">
+          {deal.discount_pct}% off
+        </span>
+      </div>
+
+      <div className="mt-4 flex flex-wrap gap-2 text-sm text-[color:var(--muted)]">
+        <span className="rounded-full bg-[color:var(--panel-strong)] px-3 py-2">
+          Valid through {deal.valid_through}
+        </span>
+        {deal.in_store_only ? (
+          <span className="rounded-full bg-[color:var(--panel-strong)] px-3 py-2">
+            In-store only
+          </span>
+        ) : null}
+        {deal.notes ? (
+          <span className="rounded-full bg-[color:var(--panel-strong)] px-3 py-2">
+            {deal.notes}
+          </span>
+        ) : null}
+      </div>
+    </article>
+  );
+}

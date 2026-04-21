@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96" role="img" aria-label="Burger King">
+  <rect width="96" height="96" rx="24" fill="#fff7ee"/>
+  <path d="M19 31c4-8 13-13 29-13s25 5 29 13H19zm0 34c4 8 13 13 29 13s25-5 29-13H19z" fill="#d76a03"/>
+  <rect x="20" y="39" width="56" height="18" rx="9" fill="#f2c36b"/>
+  <text x="48" y="51" text-anchor="middle" font-size="11" font-family="Georgia, serif" fill="#173f8a">BK</text>
+</svg>
+
