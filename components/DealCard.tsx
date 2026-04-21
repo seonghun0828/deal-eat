@@ -1,4 +1,5 @@
 import type { Chain, Deal } from "@/lib/schema";
+import { formatPrice, formatShortDate } from "@/lib/format";
 import { isNew } from "@/lib/isNew";
 
 const logoMap: Record<Chain, string> = {
@@ -9,8 +10,6 @@ const logoMap: Record<Chain, string> = {
   "Mom's Touch": "/logos/moms-touch.svg",
   "No Brand Burger": "/logos/no-brand-burger.svg",
 };
-
-const priceFormatter = new Intl.NumberFormat("ko-KR");
 
 type DealCardProps = {
   deal: Deal;
@@ -63,26 +62,26 @@ export function DealCard({ deal, now = new Date() }: DealCardProps) {
       <div className="mt-5 flex items-end justify-between gap-4">
         <div className="flex flex-wrap items-end gap-3">
           <strong className="text-3xl font-semibold text-[color:var(--accent)]">
-            ₩{priceFormatter.format(deal.deal_price)}
+            {formatPrice(deal.deal_price)}
           </strong>
           {deal.original_price ? (
             <span className="text-sm text-[color:var(--muted)] line-through">
-              ₩{priceFormatter.format(deal.original_price)}
+              {formatPrice(deal.original_price)}
             </span>
           ) : null}
         </div>
         <span className="rounded-full border border-[color:var(--line)] px-3 py-1 text-sm font-semibold">
-          {deal.discount_pct}% off
+          {deal.discount_pct}% 할인
         </span>
       </div>
 
       <div className="mt-4 flex flex-wrap gap-2 text-sm text-[color:var(--muted)]">
         <span className="rounded-full bg-[color:var(--panel-strong)] px-3 py-2">
-          Valid through {deal.valid_through}
+          {formatShortDate(deal.valid_through)}까지
         </span>
         {deal.in_store_only ? (
           <span className="rounded-full bg-[color:var(--panel-strong)] px-3 py-2">
-            In-store only
+            매장 전용
           </span>
         ) : null}
         {deal.notes ? (

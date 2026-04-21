@@ -26,7 +26,7 @@ describe("FilterSortModal", () => {
       />,
     );
 
-    await user.click(screen.getByRole("button", { name: /open filters/i }));
+    await user.click(screen.getByRole("button", { name: "필터 열기" }));
     expect(onOpenChange).toHaveBeenCalledWith(true);
   });
 
@@ -44,11 +44,27 @@ describe("FilterSortModal", () => {
       />,
     );
 
-    await user.click(screen.getByRole("radio", { name: /hamburgers first/i }));
+    await user.click(screen.getByRole("radio", { name: "햄버거 먼저" }));
     expect(onFiltersChange).toHaveBeenCalledWith({
       ...baseFilters,
       sortMode: "hamburgers_first",
     });
   });
-});
 
+  it("marks All as active when no brand filter is applied", () => {
+    render(
+      <FilterSortModal
+        filters={baseFilters}
+        isOpen
+        onFiltersChange={vi.fn()}
+        onOpenChange={vi.fn()}
+        sliderMax={20000}
+      />,
+    );
+
+    expect(screen.getByRole("button", { name: "All" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+  });
+});

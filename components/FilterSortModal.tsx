@@ -13,9 +13,9 @@ const CHAINS: Chain[] = [
 ];
 
 const sortOptions: Array<{ value: SortMode; label: string }> = [
-  { value: "highest_discount", label: "Highest Discount" },
-  { value: "hamburgers_first", label: "Hamburgers First" },
-  { value: "new_first", label: "New/Re-released First" },
+  { value: "highest_discount", label: "할인율 높은 순" },
+  { value: "hamburgers_first", label: "햄버거 먼저" },
+  { value: "new_first", label: "신규/재출시 먼저" },
 ];
 
 type FilterSortModalProps = {
@@ -51,14 +51,14 @@ export function FilterSortModal({
           <p className="text-xs uppercase tracking-[0.25em] text-[color:var(--muted)]">
             Controls
           </p>
-          <h2 className="mt-1 text-lg font-semibold">Filter and sort deals</h2>
+          <h2 className="mt-1 text-lg font-semibold">필터와 정렬</h2>
         </div>
         <button
           className="min-h-11 rounded-full bg-[color:var(--foreground)] px-5 py-3 text-sm font-semibold text-white"
           onClick={() => onOpenChange(!isOpen)}
           type="button"
         >
-          {isOpen ? "Close" : "Open"} filters
+          {isOpen ? "닫기" : "필터 열기"}
         </button>
       </div>
 
@@ -78,6 +78,7 @@ export function FilterSortModal({
                   })
                 }
                 type="button"
+                aria-pressed={filters.selectedChains.length === 0}
               >
                 All
               </button>
@@ -161,4 +162,3 @@ export function FilterSortModal({
     </section>
   );
 }
-
