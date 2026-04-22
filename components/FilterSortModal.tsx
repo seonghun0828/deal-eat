@@ -1,21 +1,22 @@
-"use client";
+'use client';
 
-import type { Chain } from "@/lib/schema";
-import type { FiltersState, SortMode } from "@/lib/filters";
+import { formatChainName } from '@/lib/format';
+import type { FiltersState, SortMode } from '@/lib/filters';
+import type { Chain } from '@/lib/schema';
 
 const CHAINS: Chain[] = [
   "McDonald's",
-  "Burger King",
-  "KFC",
-  "Lotteria",
+  'Burger King',
+  'KFC',
+  'Lotteria',
   "Mom's Touch",
-  "No Brand Burger",
+  'No Brand Burger',
 ];
 
 const sortOptions: Array<{ value: SortMode; label: string }> = [
-  { value: "highest_discount", label: "할인율 높은 순" },
-  { value: "hamburgers_first", label: "햄버거 먼저" },
-  { value: "new_first", label: "신규/재출시 먼저" },
+  { value: 'highest_discount', label: '할인율 높은 순' },
+  { value: 'hamburgers_first', label: '햄버거 먼저' },
+  { value: 'new_first', label: '신규/재출시 먼저' },
 ];
 
 type FilterSortModalProps = {
@@ -49,7 +50,7 @@ export function FilterSortModal({
       <div className="flex items-center justify-between gap-4">
         <div>
           <p className="text-xs uppercase tracking-[0.25em] text-[color:var(--muted)]">
-            Controls
+            DealEat
           </p>
           <h2 className="mt-1 text-lg font-semibold">필터와 정렬</h2>
         </div>
@@ -58,7 +59,7 @@ export function FilterSortModal({
           onClick={() => onOpenChange(!isOpen)}
           type="button"
         >
-          {isOpen ? "닫기" : "필터 열기"}
+          {isOpen ? '닫기' : '필터 열기'}
         </button>
       </div>
 
@@ -67,7 +68,7 @@ export function FilterSortModal({
           <div>
             <div className="flex items-center justify-between gap-3">
               <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-[color:var(--muted)]">
-                Brand
+                브랜드
               </h3>
               <button
                 className="min-h-11 rounded-full border border-[color:var(--line)] px-4 py-2 text-sm"
@@ -80,7 +81,7 @@ export function FilterSortModal({
                 type="button"
                 aria-pressed={filters.selectedChains.length === 0}
               >
-                All
+                전체
               </button>
             </div>
             <div className="mt-3 flex flex-wrap gap-2">
@@ -99,7 +100,7 @@ export function FilterSortModal({
                     onClick={() => toggleChain(chain)}
                     type="button"
                   >
-                    {chain}
+                    {formatChainName(chain)}
                   </button>
                 );
               })}
@@ -109,12 +110,12 @@ export function FilterSortModal({
           <div>
             <div className="flex items-center justify-between gap-3">
               <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-[color:var(--muted)]">
-                Max Price
+                최대 가격
               </h3>
-              <span className="text-sm font-semibold">₩{filters.maxPrice.toLocaleString("ko-KR")}</span>
+              <span className="text-sm font-semibold">₩{filters.maxPrice.toLocaleString('ko-KR')}</span>
             </div>
             <input
-              aria-label="Max Price"
+              aria-label="최대 가격"
               className="mt-3 h-11 w-full"
               max={sliderMax}
               min={0}
@@ -132,7 +133,7 @@ export function FilterSortModal({
 
           <fieldset>
             <legend className="text-sm font-semibold uppercase tracking-[0.2em] text-[color:var(--muted)]">
-              Sort
+              정렬
             </legend>
             <div className="mt-3 grid gap-2">
               {sortOptions.map((option) => (

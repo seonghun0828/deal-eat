@@ -1,5 +1,5 @@
 import type { Chain, Deal } from '@/lib/schema';
-import { formatPrice, formatShortDate } from '@/lib/format';
+import { formatChainName, formatPrice, formatShortDate } from '@/lib/format';
 import { isNew } from '@/lib/isNew';
 
 const logoMap: Record<Chain, string> = {
@@ -19,6 +19,7 @@ type DealCardProps = {
 export function DealCard({ deal, now = new Date() }: DealCardProps) {
   const showBadge = isNew(deal.launch_date, now);
   const badgeLabel = deal.is_relaunched ? '재출시' : 'NEW';
+  const displayChain = formatChainName(deal.chain);
   const fallbackId = `${deal.chain}-fallback`;
 
   return (
@@ -44,11 +45,11 @@ export function DealCard({ deal, now = new Date() }: DealCardProps) {
             hidden
             id={fallbackId}
           >
-            {deal.chain}
+            {displayChain}
           </span>
           <div>
             <p className="text-xs uppercase tracking-[0.25em] text-[color:var(--muted)]">
-              {deal.chain}
+              {displayChain}
             </p>
             <h2 className="mt-1 text-xl font-semibold">{deal.deal_name}</h2>
           </div>

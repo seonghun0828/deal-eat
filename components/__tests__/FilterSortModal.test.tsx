@@ -62,7 +62,7 @@ describe("FilterSortModal", () => {
       />,
     );
 
-    expect(screen.getByRole("button", { name: "All" })).toHaveAttribute(
+    expect(screen.getByRole("button", { name: "전체" })).toHaveAttribute(
       "aria-pressed",
       "true",
     );
