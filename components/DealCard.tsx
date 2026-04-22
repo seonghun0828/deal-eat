@@ -1,14 +1,14 @@
-import type { Chain, Deal } from "@/lib/schema";
-import { formatPrice, formatShortDate } from "@/lib/format";
-import { isNew } from "@/lib/isNew";
+import type { Chain, Deal } from '@/lib/schema';
+import { formatPrice, formatShortDate } from '@/lib/format';
+import { isNew } from '@/lib/isNew';
 
 const logoMap: Record<Chain, string> = {
-  "McDonald's": "/logos/mcdonalds.svg",
-  "Burger King": "/logos/burger-king.svg",
-  KFC: "/logos/kfc.svg",
-  Lotteria: "/logos/lotteria.svg",
-  "Mom's Touch": "/logos/moms-touch.svg",
-  "No Brand Burger": "/logos/no-brand-burger.svg",
+  "McDonald's": '/logos/mcdonalds.svg',
+  'Burger King': '/logos/burger-king.svg',
+  KFC: '/logos/kfc.svg',
+  Lotteria: '/logos/lotteria.svg',
+  "Mom's Touch": '/logos/moms-touch.svg',
+  'No Brand Burger': '/logos/no-brand-burger.svg',
 };
 
 type DealCardProps = {
@@ -18,7 +18,7 @@ type DealCardProps = {
 
 export function DealCard({ deal, now = new Date() }: DealCardProps) {
   const showBadge = isNew(deal.launch_date, now);
-  const badgeLabel = deal.is_relaunched ? "돌아왔어요" : "NEW";
+  const badgeLabel = deal.is_relaunched ? '재출시' : 'NEW';
   const fallbackId = `${deal.chain}-fallback`;
 
   return (
@@ -31,8 +31,9 @@ export function DealCard({ deal, now = new Date() }: DealCardProps) {
             className="h-12 w-12 rounded-full border border-[color:var(--line)] bg-white object-contain p-2"
             src={logoMap[deal.chain]}
             onError={(event) => {
-              event.currentTarget.style.display = "none";
-              const next = event.currentTarget.nextElementSibling as HTMLSpanElement | null;
+              event.currentTarget.style.display = 'none';
+              const next = event.currentTarget
+                .nextElementSibling as HTMLSpanElement | null;
               if (next) {
                 next.hidden = false;
               }
@@ -81,7 +82,7 @@ export function DealCard({ deal, now = new Date() }: DealCardProps) {
         </span>
         {deal.in_store_only ? (
           <span className="rounded-full bg-[color:var(--panel-strong)] px-3 py-2">
-            매장 전용
+            매장 방문
           </span>
         ) : null}
         {deal.notes ? (
