@@ -64,6 +64,7 @@ Use these exact strings:
 ### Category Enum
 
 - `hamburger_single`
+- `hamburger_combo`
 - `hamburger_set`
 - `side`
 - `drink`
@@ -110,7 +111,7 @@ Rules:
 Badge rules:
 
 - new item + `is_relaunched !== true` -> `NEW`
-- new item + `is_relaunched === true` -> `돌아왔어요`
+- new item + `is_relaunched === true` -> `재출시`
 
 ## UI Requirements
 
@@ -129,7 +130,7 @@ Badge rules:
 - original price with strikethrough when present
 - discount percent
 - valid-through date
-- `NEW` or `돌아왔어요` badge when applicable
+- `NEW` or `재출시` badge when applicable
 
 If a logo is missing, fall back to text instead of a broken image.
 
@@ -146,7 +147,7 @@ If a logo is missing, fall back to text instead of a broken image.
 - Highest Discount:
   `discount_pct` descending
 - Hamburgers First:
-  `hamburger_single -> hamburger_set -> combo_other -> side -> drink`
+  `hamburger_single = hamburger_combo = hamburger_set -> combo_other -> side -> drink`
   then `discount_pct` descending within each group
 - New/Re-released First:
   new items first, then `discount_pct` descending

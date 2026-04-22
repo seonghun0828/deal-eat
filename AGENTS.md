@@ -134,6 +134,7 @@ This enum is used for:
 Use these exact values:
 
 - `hamburger_single`
+- `hamburger_combo`
 - `hamburger_set`
 - `side`
 - `drink`
@@ -177,7 +178,7 @@ bugs. The rule is:
 - if `launch_date` is within the last 14 days in `Asia/Seoul`, `is_new` is true
 
 If `is_relaunched` is true and the item is new by date, the UI badge should be
-`돌아왔어요`; otherwise use `NEW`.
+`재출시`; otherwise use `NEW`.
 
 ## UI Requirements
 
@@ -196,7 +197,7 @@ If `is_relaunched` is true and the item is new by date, the UI badge should be
 - original price with strikethrough when present
 - discount percentage
 - valid-through date
-- `NEW` or `돌아왔어요` badge when applicable
+- `NEW` or `재출시` badge when applicable
 
 If a logo asset is missing, the UI must fall back to rendering the chain name
 instead of showing a broken image.
@@ -214,9 +215,9 @@ Sort options:
 
 - Highest Discount: `discount_pct` descending
 - Hamburgers First: category order
-  `hamburger_single -> hamburger_set -> combo_other -> side -> drink`
+  `hamburger_single = hamburger_combo = hamburger_set -> combo_other -> side -> drink`
   with secondary sort by `discount_pct` descending
-- New/Re-released First: new items first, then secondary sort by
+- New/Relaunched First: new items first, then secondary sort by
   `discount_pct` descending
 
 Placeholder cards for `unavailable_chains` must render after real deals,
@@ -282,6 +283,8 @@ CI should exist early in the implementation, not as a final cleanup task.
 - prefer small, test-backed steps
 - keep domain logic pure where possible
 - avoid hidden coupling between UI and data parsing
+- when editing code, follow the repo or global formatter output instead of
+  preserving conflicting quote or spacing styles by hand
 - preserve exact enum strings from the approved docs
 - do not compute business behavior differently in tests and production code
 - keep KST handling explicit
@@ -312,4 +315,3 @@ These are known follow-ups, not blockers for core v1 implementation:
 
 - sourcing or creating local SVG logos for all six chains
 - confirming KakaoTalk Plus Friend eligibility requirements
-

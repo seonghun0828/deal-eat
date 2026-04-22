@@ -1,20 +1,21 @@
-import { z } from "zod";
+import { z } from 'zod';
 
 export const chainEnum = z.enum([
   "McDonald's",
-  "Burger King",
-  "KFC",
-  "Lotteria",
+  'Burger King',
+  'KFC',
+  'Lotteria',
   "Mom's Touch",
-  "No Brand Burger",
+  'No Brand Burger',
 ]);
 
 export const categoryEnum = z.enum([
-  "hamburger_single",
-  "hamburger_set",
-  "side",
-  "drink",
-  "combo_other",
+  'hamburger_single',
+  'hamburger_combo',
+  'hamburger_set',
+  'side',
+  'drink',
+  'combo_other',
 ]);
 
 export const dealSchema = z
@@ -25,7 +26,10 @@ export const dealSchema = z
     deal_price: z.number().int().nonnegative(),
     discount_pct: z.number().int().min(0).max(100),
     category: categoryEnum,
-    launch_date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),
+    launch_date: z
+      .string()
+      .regex(/^\d{4}-\d{2}-\d{2}$/)
+      .optional(),
     is_relaunched: z.boolean().optional(),
     valid_through: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
     in_store_only: z.boolean().optional(),
@@ -44,7 +48,7 @@ export const dealSchema = z
       context.addIssue({
         code: z.ZodIssueCode.custom,
         message: `discount_pct ${deal.discount_pct} doesn't match computed ${computed} for ${deal.deal_name}`,
-        path: ["discount_pct"],
+        path: ['discount_pct'],
       });
     }
   });

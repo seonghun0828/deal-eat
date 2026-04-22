@@ -1,18 +1,16 @@
-import type { Chain, Deal } from "./schema";
-import { isNew } from "./isNew";
+import type { Chain, Deal } from './schema';
+import { isNew } from './isNew';
 
 export const HAMBURGERS_FIRST_ORDER = [
-  "hamburger_single",
-  "hamburger_set",
-  "combo_other",
-  "side",
-  "drink",
+  'hamburger_single',
+  'hamburger_combo',
+  'hamburger_set',
+  'combo_other',
+  'side',
+  'drink',
 ] as const;
 
-export type SortMode =
-  | "highest_discount"
-  | "hamburgers_first"
-  | "new_first";
+export type SortMode = 'highest_discount' | 'hamburgers_first' | 'new_first';
 
 export type FiltersState = {
   selectedChains: Chain[];
@@ -53,10 +51,12 @@ export const sortDeals = (
   const sorted = [...deals];
 
   switch (sortMode) {
-    case "hamburgers_first":
+    case 'hamburgers_first':
       return sorted.sort((left, right) => {
-        const leftOrder = categoryOrder.get(left.category) ?? Number.MAX_SAFE_INTEGER;
-        const rightOrder = categoryOrder.get(right.category) ?? Number.MAX_SAFE_INTEGER;
+        const leftOrder =
+          categoryOrder.get(left.category) ?? Number.MAX_SAFE_INTEGER;
+        const rightOrder =
+          categoryOrder.get(right.category) ?? Number.MAX_SAFE_INTEGER;
 
         if (leftOrder !== rightOrder) {
           return leftOrder - rightOrder;
@@ -64,7 +64,7 @@ export const sortDeals = (
 
         return byDiscountDesc(left, right);
       });
-    case "new_first":
+    case 'new_first':
       return sorted.sort((left, right) => {
         const leftNew = isNew(left.launch_date, now);
         const rightNew = isNew(right.launch_date, now);
@@ -75,7 +75,7 @@ export const sortDeals = (
 
         return byDiscountDesc(left, right);
       });
-    case "highest_discount":
+    case 'highest_discount':
     default:
       return sorted.sort(byDiscountDesc);
   }
@@ -91,4 +91,3 @@ export const applyFiltersAndSort = (
     filters.sortMode,
     now,
   );
-

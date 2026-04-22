@@ -10,10 +10,12 @@ If GSTACK_MISSING: STOP. Do not proceed. Tell the user:
 
 > gstack is required for all AI-assisted work in this repo.
 > Install it:
+>
 > ```bash
 > git clone --depth 1 https://github.com/garrytan/gstack.git ~/.claude/skills/gstack
 > cd ~/.claude/skills/gstack && ./setup --team
 > ```
+>
 > Then restart your AI coding tool.
 
 Do not skip skills, ignore gstack errors, or work around missing gstack.
@@ -29,6 +31,7 @@ Use ~/.claude/skills/gstack/... for gstack file paths (the global path).
 **Stack:** Next.js 15, App Router, TypeScript, Tailwind CSS, Vercel, Zod, Vitest + React Testing Library, Playwright (E2E).
 
 **File structure:**
+
 ```
 deals.json                        # hand-curated weekly data (root)
 scripts/validate-deals.ts         # Zod validation — runs in CI before deploy
@@ -42,6 +45,7 @@ public/logos/{chain-slug}.svg     # local SVGs, one per chain
 ```
 
 **deals.json top-level shape:**
+
 ```json
 {
   "updated_at": "ISO timestamp (KST)",
@@ -59,9 +63,10 @@ Used for: `chain` field, `unavailable_chains[]`, and logo filename lookup.
 `discount_pct` is read directly from the chain app display — never computed.
 When `original_price` is present, Zod `.refine()` validates `discount_pct` is within ±1 of the computed value.
 
-**`category` enum:** `hamburger_single | hamburger_set | side | drink | combo_other`
+**`category` enum:** `hamburger_single | hamburger_combo | hamburger_set | side | drink | combo_other`
 
 **`is_new` — computed in UI, never stored:**
+
 ```ts
 // Compare KST date strings, not timestamps (avoids UTC/KST boundary bugs)
 const isNew = (launch_date?: string): boolean => {
@@ -71,7 +76,7 @@ const isNew = (launch_date?: string): boolean => {
 };
 ```
 
-**Sort order for "Hamburgers First":** `hamburger_single → hamburger_set → combo_other → side → drink`. Secondary sort within each group: `discount_pct` descending.
+**Sort order for "Hamburgers First":** `hamburger_single = hamburger_combo = hamburger_set → combo_other → side → drink`. Secondary sort within each group: `discount_pct` descending.
 
 **Max price slider range:** dynamic — `Math.max(20000, Math.ceil(maxDealPrice / 1000) * 1000)`. Default value: 13,000 KRW. Touch target: 44px minimum height.
 
@@ -88,6 +93,7 @@ tool as your FIRST action. Do NOT answer directly, do NOT use other tools first.
 The skill has specialized workflows that produce better results than ad-hoc answers.
 
 Key routing rules:
+
 - Product ideas, "is this worth building", brainstorming → invoke office-hours
 - Bugs, errors, "why is this broken", 500 errors → invoke investigate
 - Ship, deploy, push, create PR → invoke ship
