@@ -6,8 +6,9 @@ import {
   sortDeals,
   type FiltersState,
 } from "@/lib/filters";
+import { dealsFileSchema } from "@/lib/schema";
 
-const deals = fixture.deals;
+const deals = dealsFileSchema.parse(fixture).deals;
 
 describe("filters", () => {
   it("filters by selected chain", () => {
@@ -61,4 +62,3 @@ describe("filters", () => {
     expect(getSliderMax(deals)).toBe(20000);
   });
 });
-

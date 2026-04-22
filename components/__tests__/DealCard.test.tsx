@@ -2,16 +2,27 @@ import { render, screen } from '@testing-library/react';
 
 import fixture from '@/deals.json';
 import { DealCard } from '@/components/DealCard';
+import { dealsFileSchema } from '@/lib/schema';
 
-const recentInStoreOnlyDeal = fixture.deals.find(
-  (deal) => deal.deal_name === '빵치짜만원박스',
-);
+const parsedFixture = dealsFileSchema.parse(fixture);
+
+function getDealByName(dealName: string) {
+  const deal = parsedFixture.deals.find(
+    (candidate) => candidate.deal_name === dealName,
+  );
+
+  if (!deal) {
+    throw new Error(`Fixture deal not found: ${dealName}`);
+  }
+
+  return deal;
+}
 
 describe('DealCard', () => {
   it('renders the main fields', () => {
     render(
       <DealCard
-        deal={fixture.deals[0]}
+        deal={parsedFixture.deals[0]!}
         now={new Date('2026-04-21T12:00:00+09:00')}
       />,
     );
@@ -23,11 +34,9 @@ describe('DealCard', () => {
   });
 
   it('shows the new badge and in-store label for a recent in-store-only deal', () => {
-    expect(recentInStoreOnlyDeal).toBeDefined();
-
     render(
       <DealCard
-        deal={recentInStoreOnlyDeal!}
+        deal={getDealByName('빵치짜만원박스')}
         now={new Date('2026-04-21T12:00:00+09:00')}
       />,
     );
