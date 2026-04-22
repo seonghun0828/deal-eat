@@ -1,60 +1,213 @@
 {
-  "updated_at": "2026-04-21T09:00:00+09:00",
+  "updated_at": "2026-04-22T10:50:00+09:00",
   "deals": [
     {
       "chain": "McDonald's",
-      "deal_name": "빅맥 세트 할인",
-      "original_price": 8500,
-      "deal_price": 6500,
-      "discount_pct": 24,
-      "category": "hamburger_set",
-      "launch_date": "2026-04-14",
+      "deal_name": "맥스파이시 상하이 버거",
+      "deal_price": 3800,
+      "discount_pct": 36,
+      "category": "hamburger_single",
       "is_relaunched": false,
-      "valid_through": "2026-04-28",
-      "in_store_only": true,
-      "notes": "앱 쿠폰 필요"
+      "valid_through": "2026-04-27",
+      "in_store_only": false
+    },
+    {
+      "chain": "McDonald's",
+      "deal_name": "슈비 버거",
+      "deal_price": 4300,
+      "discount_pct": 31,
+      "category": "hamburger_single",
+      "is_relaunched": false,
+      "valid_through": "2026-04-27",
+      "in_store_only": false,
+      "notes": "M오더 전용"
+    },
+    {
+      "chain": "McDonald's",
+      "deal_name": "한입 초코 츄러스 3조각 + 초코 선데이 아이스크림",
+      "deal_price": 3100,
+      "discount_pct": 37,
+      "category": "side",
+      "is_relaunched": false,
+      "valid_through": "2026-04-27",
+      "in_store_only": false
+    },
+    {
+      "chain": "McDonald's",
+      "deal_name": "슈슈 버거 + 탄산 음료 M",
+      "deal_price": 5000,
+      "discount_pct": 25,
+      "category": "hamburger_combo",
+      "is_relaunched": false,
+      "valid_through": "2026-04-27",
+      "in_store_only": false
     },
     {
       "chain": "Burger King",
-      "deal_name": "와퍼 단품 할인",
-      "original_price": 7100,
-      "deal_price": 4900,
-      "discount_pct": 31,
+      "deal_name": "[크리스퍼] 입신양명 스펙업 세트",
+      "original_price": 7900,
+      "deal_price": 6400,
+      "discount_pct": 18,
+      "category": "hamburger_set",
+      "launch_date": "2025-04-10",
+      "valid_through": "2026-04-26",
+      "in_store_only": false,
+      "notes": "더 크리스퍼+코카콜라(R)+프렌치프라이(R)"
+    },
+    {
+      "chain": "Burger King",
+      "deal_name": "[크리스퍼] 만수무강 오래오래 세트",
+      "original_price": 8900,
+      "deal_price": 7200,
+      "discount_pct": 19,
+      "category": "hamburger_set",
+      "launch_date": "2025-04-10",
+      "valid_through": "2026-04-26",
+      "in_store_only": false,
+      "notes": "더 크리스퍼 베이컨&치즈+코카콜라(R)+프렌치프라이(R)"
+    },
+    {
+      "chain": "Burger King",
+      "deal_name": "[크리스퍼] 호의호식 소확행 팩",
+      "original_price": 13900,
+      "deal_price": 8900,
+      "discount_pct": 35,
+      "category": "hamburger_set",
+      "launch_date": "2025-04-10",
+      "valid_through": "2026-04-26",
+      "in_store_only": false,
+      "notes": "더 크리스퍼 베이컨&치즈+코카콜라(R)+프렌치프라이(R) + 고구마 크림치즈 파이로얄"
+    },
+    {
+      "chain": "Burger King",
+      "deal_name": "[크리스퍼] 부귀영화 치트키 팩",
+      "original_price": 15800,
+      "deal_price": 9900,
+      "discount_pct": 37,
+      "category": "hamburger_set",
+      "launch_date": "2025-04-10",
+      "valid_through": "2026-04-26",
+      "in_store_only": false,
+      "notes": "더 크리스퍼+코카콜라(R)+프렌치프라이(R) + 코울슬로 + 크리스퍼텐더"
+    },
+    {
+      "chain": "Burger King",
+      "deal_name": "불고기와퍼",
+      "original_price": 7400,
+      "deal_price": 5900,
+      "discount_pct": 20,
       "category": "hamburger_single",
-      "launch_date": "2026-04-10",
-      "valid_through": "2026-04-28",
+      "valid_through": "2026-04-26",
+      "in_store_only": false
+    },
+    {
+      "chain": "Burger King",
+      "deal_name": "치즈와퍼세트",
+      "original_price": 10200,
+      "deal_price": 8500,
+      "discount_pct": 16,
+      "category": "hamburger_set",
+      "valid_through": "2026-04-26",
+      "in_store_only": false
+    },
+    {
+      "chain": "Burger King",
+      "deal_name": "쉐이킹프라이 구운갈릭",
+      "original_price": 2600,
+      "deal_price": 1700,
+      "discount_pct": 34,
+      "category": "side",
+      "valid_through": "2026-04-26",
+      "in_store_only": false
+    },
+    {
+      "chain": "KFC",
+      "deal_name": "트위스터 콤보",
+      "original_price": 6400,
+      "deal_price": 3300,
+      "discount_pct": 48,
+      "category": "combo_other",
+      "valid_through": "2026-04-27"
+    },
+    {
+      "chain": "KFC",
+      "deal_name": "빵치짜만원박스",
+      "launch_date": "2026-04-14",
+      "original_price": 14900,
+      "deal_price": 10000,
+      "discount_pct": 33,
+      "category": "hamburger_set",
+      "valid_through": "2026-05-04",
       "in_store_only": true
     },
     {
       "chain": "KFC",
-      "deal_name": "징거 세트 프로모션",
-      "original_price": 8900,
+      "deal_name": "치즈징거통다리세트",
+      "original_price": 9400,
       "deal_price": 6900,
-      "discount_pct": 22,
-      "category": "hamburger_set",
-      "valid_through": "2026-04-29"
-    },
-    {
-      "chain": "Mom's Touch",
-      "deal_name": "싸이버거 단품 특가",
-      "original_price": 5400,
-      "deal_price": 4200,
-      "discount_pct": 22,
-      "category": "hamburger_single",
-      "valid_through": "2026-04-27"
-    },
-    {
-      "chain": "No Brand Burger",
-      "deal_name": "NBB 어메이징 세트",
-      "original_price": 8100,
-      "deal_price": 5900,
       "discount_pct": 27,
       "category": "hamburger_set",
-      "launch_date": "2026-04-18",
-      "is_relaunched": true,
-      "valid_through": "2026-04-30"
+      "valid_through": "2026-05-04",
+      "in_store_only": true
+    },
+    {
+      "chain": "KFC",
+      "deal_name": "살라미켄치짜세트",
+      "launch_date": "2026-04-14",
+      "original_price": 8100,
+      "deal_price": 6900,
+      "discount_pct": 15,
+      "category": "hamburger_set",
+      "valid_through": "2026-05-04"
+    },
+    {
+      "chain": "KFC",
+      "deal_name": "징거박스",
+      "original_price": 10200,
+      "deal_price": 7900,
+      "discount_pct": 23,
+      "category": "hamburger_set",
+      "valid_through": "2026-05-04"
+    },
+    {
+      "chain": "KFC",
+      "deal_name": "트러플치르르프라이",
+      "original_price": 2600,
+      "deal_price": 1600,
+      "discount_pct": 38,
+      "category": "side",
+      "valid_through": "2026-05-04"
+    },
+    {
+      "chain": "Lotteria",
+      "deal_name": "클래식치즈버거",
+      "original_price": 5500,
+      "deal_price": 4500,
+      "discount_pct": 18,
+      "category": "hamburger_single",
+      "valid_through": "2026-04-30",
+      "notes": "롯데잇츠 앱 내 쿠폰"
+    },
+    {
+      "chain": "Lotteria",
+      "deal_name": "리아 새우 베이컨 콤보",
+      "original_price": 8100,
+      "deal_price": 6000,
+      "discount_pct": 26,
+      "category": "hamburger_combo",
+      "valid_through": "2026-04-30",
+      "notes": "롯데잇츠 앱 내 쿠폰"
+    },
+    {
+      "chain": "Lotteria",
+      "deal_name": "1인팩(불고기버거+양념감자+치즈스틱+콜라1잔)",
+      "original_price": 10700,
+      "deal_price": 8500,
+      "discount_pct": 21,
+      "category": "hamburger_set",
+      "valid_through": "2026-04-30",
+      "notes": "롯데잇츠 앱 내 쿠폰"
     }
   ],
-  "unavailable_chains": ["Lotteria"]
+  "unavailable_chains": ["Mom's Touch", "No Brand Burger"]
 }
-
