@@ -1,14 +1,11 @@
 import type { Chain, Deal } from './schema';
 import { isNew } from './isNew';
 
-export const HAMBURGERS_FIRST_ORDER = [
+const HAMBURGER_CATEGORIES = new Set([
   'hamburger_single',
   'hamburger_combo',
   'hamburger_set',
-  'combo_other',
-  'side',
-  'drink',
-] as const;
+]);
 
 export type SortMode = 'highest_discount' | 'hamburgers_first' | 'new_first';
 
@@ -18,9 +15,14 @@ export type FiltersState = {
   sortMode: SortMode;
 };
 
-const categoryOrder = new Map(
-  HAMBURGERS_FIRST_ORDER.map((category, index) => [category, index]),
-);
+const categoryOrder = new Map([
+  ['hamburger_single', 0],
+  ['hamburger_combo', 0],
+  ['hamburger_set', 0],
+  ['combo_other', 1],
+  ['side', 2],
+  ['drink', 3],
+]);
 
 const byDiscountDesc = (left: Deal, right: Deal) =>
   right.discount_pct - left.discount_pct;
@@ -60,6 +62,13 @@ export const sortDeals = (
 
         if (leftOrder !== rightOrder) {
           return leftOrder - rightOrder;
+        }
+
+        if (
+          HAMBURGER_CATEGORIES.has(left.category) &&
+          HAMBURGER_CATEGORIES.has(right.category)
+        ) {
+          return byDiscountDesc(left, right);
         }
 
         return byDiscountDesc(left, right);

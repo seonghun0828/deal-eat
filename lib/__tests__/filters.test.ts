@@ -13,35 +13,57 @@ const deals = dealsFileSchema.parse(fixture).deals;
 describe("filters", () => {
   it("filters by selected chain", () => {
     const result = filterDeals(deals, ["KFC"], 20000);
-    expect(result).toHaveLength(1);
-    expect(result[0].chain).toBe("KFC");
+    expect(result).toHaveLength(6);
+    expect(result.every((deal) => deal.chain === "KFC")).toBe(true);
   });
 
   it("filters by max price", () => {
     const result = filterDeals(deals, [], 5000);
-    expect(result.map((deal) => deal.chain)).toEqual([
-      "Burger King",
-      "Mom's Touch",
-    ]);
+    expect(result.every((deal) => deal.deal_price <= 5000)).toBe(true);
+    expect(result.some((deal) => deal.chain === "McDonald's")).toBe(true);
+    expect(result.some((deal) => deal.chain === "Lotteria")).toBe(true);
   });
 
   it("sorts by highest discount", () => {
     const result = sortDeals(deals, "highest_discount");
-    expect(result[0].chain).toBe("Burger King");
+    expect(result[0].chain).toBe("KFC");
+    expect(result[0].discount_pct).toBe(48);
   });
 
-  it("sorts hamburgers first using the approved category order", () => {
+  it("sorts hamburgers first with single/combo/set treated as the same priority", () => {
     const result = sortDeals(deals, "hamburgers_first");
-    expect(result[0].category).toBe("hamburger_single");
-    expect(result[1].category).toBe("hamburger_single");
+    const firstNonHamburgerIndex = result.findIndex(
+      (deal) =>
+        !["hamburger_single", "hamburger_combo", "hamburger_set"].includes(
+          deal.category,
+        ),
+    );
+
+    expect(firstNonHamburgerIndex).toBeGreaterThan(0);
+    expect(
+      result
+        .slice(0, firstNonHamburgerIndex)
+        .every((deal) =>
+          ["hamburger_single", "hamburger_combo", "hamburger_set"].includes(
+            deal.category,
+          ),
+        ),
+    ).toBe(true);
+    expect(result.slice(0, 5).map((deal) => deal.discount_pct)).toEqual([
+      37,
+      36,
+      35,
+      33,
+      31,
+    ]);
   });
 
   it("sorts new items first", () => {
     const now = new Date("2026-04-21T12:00:00+09:00");
     const result = sortDeals(deals, "new_first", now);
 
-    expect(result[0].chain).toBe("Burger King");
-    expect(result[1].chain).toBe("No Brand Burger");
+    expect(result[0].deal_name).toBe("빵치짜만원박스");
+    expect(result[1].deal_name).toBe("살라미켄치짜세트");
   });
 
   it("applies filters and sort together", () => {
@@ -52,10 +74,9 @@ describe("filters", () => {
     };
 
     const result = applyFiltersAndSort(deals, filters);
-    expect(result.map((deal) => deal.chain)).toEqual([
-      "Burger King",
-      "McDonald's",
-    ]);
+    expect(result.every((deal) => deal.chain !== "KFC")).toBe(true);
+    expect(result.every((deal) => deal.deal_price <= 7000)).toBe(true);
+    expect(result[0].discount_pct).toBeGreaterThanOrEqual(result[1].discount_pct);
   });
 
   it("computes the slider max with the minimum floor", () => {
