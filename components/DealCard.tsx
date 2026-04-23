@@ -7,7 +7,7 @@ const logoMap: Record<Chain, string> = {
   'Burger King': '/logos/burger-king.svg',
   KFC: '/logos/kfc.svg',
   Lotteria: '/logos/lotteria.svg',
-  "Mom's Touch": '/logos/moms-touch.svg',
+  "Mom's Touch": '/logos/moms-touch.png',
   'No Brand Burger': '/logos/no-brand-burger.svg',
 };
 
@@ -29,7 +29,7 @@ export function DealCard({ deal, now = new Date() }: DealCardProps) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             alt={`${deal.chain} logo`}
-            className="h-12 w-12 rounded-full border border-[color:var(--line)] bg-white object-contain p-2"
+            className="h-12 w-12 rounded-full border border-[color:var(--line)] bg-white object-contain p-1.5"
             src={logoMap[deal.chain]}
             onError={(event) => {
               event.currentTarget.style.display = 'none';
