@@ -50,7 +50,7 @@ export function FilterSortModal({
       <div className="flex items-center justify-between gap-4">
         <div>
           <p className="text-xs uppercase tracking-[0.25em] text-[color:var(--muted)]">
-            DealEat
+            Burger Deal
           </p>
           <h2 className="mt-1 text-lg font-semibold">필터와 정렬</h2>
         </div>
@@ -93,8 +93,8 @@ export function FilterSortModal({
                     aria-pressed={selected}
                     className={`min-h-11 rounded-full px-4 py-2 text-sm font-medium ${
                       selected
-                        ? "bg-[color:var(--accent)] text-white"
-                        : "border border-[color:var(--line)] bg-white"
+                        ? 'bg-[color:var(--accent)] text-white'
+                        : 'border border-[color:var(--line)] bg-white'
                     }`}
                     key={chain}
                     onClick={() => toggleChain(chain)}
@@ -112,7 +112,9 @@ export function FilterSortModal({
               <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-[color:var(--muted)]">
                 최대 가격
               </h3>
-              <span className="text-sm font-semibold">₩{filters.maxPrice.toLocaleString('ko-KR')}</span>
+              <span className="text-sm font-semibold">
+                ₩{filters.maxPrice.toLocaleString('ko-KR')}
+              </span>
             </div>
             <input
               aria-label="최대 가격"

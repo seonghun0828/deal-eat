@@ -26,7 +26,7 @@ Use ~/.claude/skills/gstack/... for gstack file paths (the global path).
 
 ## Implementation
 
-**Project:** DealEat — Korean fast food coupon aggregator (read-only weekly feed).
+**Project:** BurgerDeal — Korean fast food coupon aggregator (read-only weekly feed).
 
 **Stack:** Next.js 15, App Router, TypeScript, Tailwind CSS, Vercel, Zod, Vitest + React Testing Library, Playwright (E2E).
 

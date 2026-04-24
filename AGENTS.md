@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This repository implements DealEat, a Korean fast food coupon aggregator.
+This repository implements BurgerDeal, a Korean fast food coupon aggregator.
 The product goal for v1 is a read-only weekly feed that shows current in-store
 coupon deals across these six chains:
 

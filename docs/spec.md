@@ -1,8 +1,8 @@
-# DealEat Spec
+# Burger Deal Spec
 
 ## Product
 
-DealEat is a Korean fast food coupon aggregator. v1 is a read-only weekly feed
+Burger Deal is a Korean fast food coupon aggregator. v1 is a read-only weekly feed
 that shows current deals from six chains in one mobile-friendly page.
 
 Included chains:
