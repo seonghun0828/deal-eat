@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import fixture from '@/deals.json';
 import { DealCard } from '@/components/DealCard';
@@ -43,6 +44,22 @@ describe('DealCard', () => {
 
     expect(screen.getByText('빵치짜만원박스')).toBeInTheDocument();
     expect(screen.getByText('NEW')).toBeInTheDocument();
-    expect(screen.getByText('매장 방문')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: '자세히 보기' })).toBeInTheDocument();
+  });
+
+  it('calls onSeeMore when the button is clicked', async () => {
+    const user = userEvent.setup();
+    const onSeeMore = vi.fn();
+
+    render(
+      <DealCard
+        deal={parsedFixture.deals[0]!}
+        now={new Date('2026-04-21T12:00:00+09:00')}
+        onSeeMore={onSeeMore}
+      />,
+    );
+
+    await user.click(screen.getByRole('button', { name: '자세히 보기' }));
+    expect(onSeeMore).toHaveBeenCalledWith(parsedFixture.deals[0]);
   });
 });

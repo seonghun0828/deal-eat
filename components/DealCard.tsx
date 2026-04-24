@@ -1,22 +1,15 @@
-import type { Chain, Deal } from '@/lib/schema';
+import type { Deal } from '@/lib/schema';
+import { brandLogoMap } from '@/lib/brand-assets';
 import { formatChainName, formatPrice, formatShortDate } from '@/lib/format';
 import { isNew } from '@/lib/isNew';
-
-const logoMap: Record<Chain, string> = {
-  "McDonald's": '/logos/mcdonalds.svg',
-  'Burger King': '/logos/burger-king.svg',
-  KFC: '/logos/kfc.svg',
-  Lotteria: '/logos/lotteria.svg',
-  "Mom's Touch": '/logos/moms-touch.png',
-  'No Brand Burger': '/logos/no-brand-burger.svg',
-};
 
 type DealCardProps = {
   deal: Deal;
   now?: Date;
+  onSeeMore?: (deal: Deal) => void;
 };
 
-export function DealCard({ deal, now = new Date() }: DealCardProps) {
+export function DealCard({ deal, now = new Date(), onSeeMore }: DealCardProps) {
   const showBadge = isNew(deal.launch_date, now);
   const badgeLabel = deal.is_relaunched ? '재출시' : 'NEW';
   const displayChain = formatChainName(deal.chain);
@@ -30,7 +23,7 @@ export function DealCard({ deal, now = new Date() }: DealCardProps) {
           <img
             alt={`${deal.chain} logo`}
             className="h-12 w-12 rounded-full border border-[color:var(--line)] bg-white object-contain p-1.5"
-            src={logoMap[deal.chain]}
+            src={brandLogoMap[deal.chain]}
             onError={(event) => {
               event.currentTarget.style.display = 'none';
               const next = event.currentTarget
@@ -81,16 +74,16 @@ export function DealCard({ deal, now = new Date() }: DealCardProps) {
         <span className="rounded-full bg-[color:var(--panel-strong)] px-3 py-2">
           {formatShortDate(deal.valid_through)}까지
         </span>
-        {deal.in_store_only ? (
-          <span className="rounded-full bg-[color:var(--panel-strong)] px-3 py-2">
-            매장 방문
-          </span>
-        ) : null}
-        {deal.notes ? (
-          <span className="rounded-full bg-[color:var(--panel-strong)] px-3 py-2">
-            {deal.notes}
-          </span>
-        ) : null}
+      </div>
+
+      <div className="mt-4 flex justify-end">
+        <button
+          className="min-h-11 rounded-full border border-[color:var(--line)] bg-white px-4 py-2 text-sm font-semibold"
+          onClick={() => onSeeMore?.(deal)}
+          type="button"
+        >
+          자세히 보기
+        </button>
       </div>
     </article>
   );

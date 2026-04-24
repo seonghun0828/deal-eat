@@ -1,4 +1,4 @@
-import type { Chain, UsageMode } from '@/lib/schema';
+import type { Category, Chain, UsageMode } from '@/lib/schema';
 
 const priceFormatter = new Intl.NumberFormat('ko-KR');
 
@@ -35,6 +35,15 @@ const usageModeDisplayNameMap: Record<
   store_order: '매장 주문',
 };
 
+const categoryDisplayNameMap: Record<Category, string> = {
+  hamburger_single: '단품 버거',
+  hamburger_combo: '버거 콤보',
+  hamburger_set: '버거 세트',
+  side: '사이드',
+  drink: '음료',
+  combo_other: '기타 콤보',
+};
+
 export const formatPrice = (value: number): string =>
   `₩${priceFormatter.format(value)}`;
 
@@ -53,3 +62,6 @@ export const formatUsageMode = (usageMode: UsageMode): string | undefined =>
   usageMode === 'general_promo'
     ? undefined
     : usageModeDisplayNameMap[usageMode];
+
+export const formatCategory = (category: Category): string =>
+  categoryDisplayNameMap[category];

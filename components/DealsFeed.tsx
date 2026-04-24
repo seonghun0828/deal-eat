@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 import { DealCard } from '@/components/DealCard';
+import { DealBottomSheet } from '@/components/DealBottomSheet';
 import { FilterSortModal } from '@/components/FilterSortModal';
 import { UnavailableChainCard } from '@/components/UnavailableChainCard';
 import {
@@ -12,7 +13,7 @@ import {
   type FiltersState,
 } from '@/lib/filters';
 import { formatUpdatedAt } from '@/lib/format';
-import type { DealsFile } from '@/lib/schema';
+import type { Deal, DealsFile } from '@/lib/schema';
 
 type DealsFeedProps = {
   data: DealsFile;
@@ -22,6 +23,7 @@ export function DealsFeed({ data }: DealsFeedProps) {
   const sliderMax = getSliderMax(data.deals);
 
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedDeal, setSelectedDeal] = useState<Deal | null>(null);
   const [filters, setFilters] = useState<FiltersState>({
     selectedChains: [],
     maxPrice: Math.min(DEFAULT_MAX_PRICE, sliderMax),
@@ -32,7 +34,7 @@ export function DealsFeed({ data }: DealsFeedProps) {
   const hasResults = visibleDeals.length > 0;
 
   return (
-    <main className="mx-auto min-h-screen max-w-5xl px-4 py-8 sm:px-6">
+    <main className="mx-auto min-h-screen max-w-5xl py-8">
       <section className="rounded-[36px] border border-[color:var(--line)] bg-[color:var(--panel)] p-6 shadow-[0_28px_80px_rgba(102,67,31,0.13)] backdrop-blur">
         <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
           매주 햄버거 할인 큐레이션
@@ -65,7 +67,11 @@ export function DealsFeed({ data }: DealsFeedProps) {
         {hasResults ? (
           <div className="mt-6 grid gap-4">
             {visibleDeals.map((deal) => (
-              <DealCard deal={deal} key={`${deal.chain}-${deal.deal_name}`} />
+              <DealCard
+                deal={deal}
+                key={`${deal.chain}-${deal.deal_name}`}
+                onSeeMore={setSelectedDeal}
+              />
             ))}
             {data.unavailable_chains.map((chain) => (
               <UnavailableChainCard chain={chain} key={chain} />
@@ -92,6 +98,15 @@ export function DealsFeed({ data }: DealsFeedProps) {
           </section>
         )}
       </section>
+      <DealBottomSheet
+        deal={selectedDeal}
+        onOpenChange={(open) => {
+          if (!open) {
+            setSelectedDeal(null);
+          }
+        }}
+        open={selectedDeal !== null}
+      />
     </main>
   );
 }
