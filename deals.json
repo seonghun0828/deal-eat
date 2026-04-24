@@ -54,10 +54,10 @@
       "discount_pct": 18,
       "category": "hamburger_set",
       "usage_mode": "app_coupon",
+      "included_items": ["더 크리스퍼", "코카콜라(R)", "프렌치프라이(R)"],
       "launch_date": "2025-04-10",
       "valid_through": "2026-04-26",
-      "in_store_only": false,
-      "notes": "더 크리스퍼+코카콜라(R)+프렌치프라이(R)"
+      "in_store_only": false
     },
     {
       "chain": "Burger King",
@@ -67,10 +67,14 @@
       "discount_pct": 19,
       "category": "hamburger_set",
       "usage_mode": "app_coupon",
+      "included_items": [
+        "더 크리스퍼 베이컨&치즈",
+        "코카콜라(R)",
+        "프렌치프라이(R)"
+      ],
       "launch_date": "2025-04-10",
       "valid_through": "2026-04-26",
-      "in_store_only": false,
-      "notes": "더 크리스퍼 베이컨&치즈+코카콜라(R)+프렌치프라이(R)"
+      "in_store_only": false
     },
     {
       "chain": "Burger King",
@@ -80,10 +84,15 @@
       "discount_pct": 35,
       "category": "hamburger_set",
       "usage_mode": "app_coupon",
+      "included_items": [
+        "더 크리스퍼 베이컨&치즈",
+        "코카콜라(R)",
+        "프렌치프라이(R)",
+        "고구마 크림치즈 파이로얄"
+      ],
       "launch_date": "2025-04-10",
       "valid_through": "2026-04-26",
-      "in_store_only": false,
-      "notes": "더 크리스퍼 베이컨&치즈+코카콜라(R)+프렌치프라이(R) + 고구마 크림치즈 파이로얄"
+      "in_store_only": false
     },
     {
       "chain": "Burger King",
@@ -93,10 +102,16 @@
       "discount_pct": 37,
       "category": "hamburger_set",
       "usage_mode": "app_coupon",
+      "included_items": [
+        "더 크리스퍼",
+        "코카콜라(R)",
+        "프렌치프라이(R)",
+        "코울슬로",
+        "크리스퍼텐더"
+      ],
       "launch_date": "2025-04-10",
       "valid_through": "2026-04-26",
-      "in_store_only": false,
-      "notes": "더 크리스퍼+코카콜라(R)+프렌치프라이(R) + 코울슬로 + 크리스퍼텐더"
+      "in_store_only": false
     },
     {
       "chain": "Burger King",
@@ -139,6 +154,7 @@
       "discount_pct": 48,
       "category": "combo_other",
       "usage_mode": "general_promo",
+      "included_items": ["트위스터", "탄산음료M"],
       "valid_through": "2026-04-27"
     },
     {
@@ -150,6 +166,12 @@
       "discount_pct": 33,
       "category": "hamburger_set",
       "usage_mode": "app_coupon",
+      "included_items": [
+        "살라미빵치짜",
+        "핫크리스피통다리",
+        "코울슬로",
+        "콜라M"
+      ],
       "valid_through": "2026-05-04",
       "in_store_only": true
     },
@@ -183,6 +205,12 @@
       "discount_pct": 23,
       "category": "hamburger_set",
       "usage_mode": "app_coupon",
+      "included_items": [
+        "징거버거",
+        "핫크리스피통다리",
+        "프렌치프라이M",
+        "콜라M"
+      ],
       "valid_through": "2026-05-04"
     },
     {

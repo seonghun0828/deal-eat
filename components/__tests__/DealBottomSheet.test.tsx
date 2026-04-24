@@ -34,4 +34,20 @@ describe('DealBottomSheet', () => {
 
     expect(screen.getAllByText('매장 전용').length).toBeGreaterThan(0);
   });
+
+  it('shows included items in the header description when present', () => {
+    const deal = parsedFixture.deals.find(
+      (candidate) =>
+        candidate.included_items !== undefined &&
+        candidate.included_items.length > 0,
+    );
+
+    expect(deal).toBeDefined();
+
+    render(<DealBottomSheet deal={deal!} onOpenChange={vi.fn()} open />);
+
+    expect(
+      screen.getByText(deal!.included_items!.join(' · ')),
+    ).toBeInTheDocument();
+  });
 });

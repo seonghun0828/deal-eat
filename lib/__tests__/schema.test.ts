@@ -66,4 +66,18 @@ describe("dealsFileSchema", () => {
 
     expect(() => dealsFileSchema.parse(invalid)).toThrow();
   });
+
+  it("rejects empty strings in included_items", () => {
+    const invalid = {
+      ...fixture,
+      deals: [
+        {
+          ...fixture.deals[0],
+          included_items: ["", "콜라"],
+        },
+      ],
+    };
+
+    expect(() => dealsFileSchema.parse(invalid)).toThrow();
+  });
 });

@@ -39,6 +39,7 @@ export const dealSchema = z
       .optional(),
     is_relaunched: z.boolean().optional(),
     usage_mode: usageModeEnum,
+    included_items: z.array(z.string().min(1)).min(1).optional(),
     valid_through: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
     in_store_only: z.boolean().optional(),
     notes: z.string().min(1).optional(),

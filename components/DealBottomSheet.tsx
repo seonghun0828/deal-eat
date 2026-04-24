@@ -54,6 +54,7 @@ export function DealBottomSheet({
   const link = brandAppLinks[deal.chain];
   const showBadge = isNew(deal.launch_date);
   const badgeLabel = deal.is_relaunched ? '재출시' : 'NEW';
+  const includedItemsSummary = deal.included_items?.join(' · ');
 
   return (
     <Drawer onOpenChange={onOpenChange} open={open}>
@@ -73,12 +74,14 @@ export function DealBottomSheet({
               <DrawerTitle className="mt-1 text-left text-xl sm:text-2xl">
                 {deal.deal_name}
               </DrawerTitle>
-              <DrawerDescription
-                className="mt-2 text-left"
-                id="deal-bottom-sheet-description"
-              >
-                {displayChain} 할인 상세 정보
-              </DrawerDescription>
+              {includedItemsSummary ? (
+                <DrawerDescription
+                  className="mt-2 text-left"
+                  id="deal-bottom-sheet-description"
+                >
+                  {includedItemsSummary}
+                </DrawerDescription>
+              ) : null}
             </div>
             {showBadge ? (
               <span className="rounded-full bg-[color:var(--accent)] px-3 py-1 text-sm font-semibold text-white">
