@@ -18,6 +18,13 @@ export const categoryEnum = z.enum([
   'combo_other',
 ]);
 
+export const usageModeEnum = z.enum([
+  'app_coupon',
+  'app_order',
+  'store_order',
+  'general_promo',
+]);
+
 export const dealSchema = z
   .object({
     chain: chainEnum,
@@ -31,6 +38,7 @@ export const dealSchema = z
       .regex(/^\d{4}-\d{2}-\d{2}$/)
       .optional(),
     is_relaunched: z.boolean().optional(),
+    usage_mode: usageModeEnum,
     valid_through: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
     in_store_only: z.boolean().optional(),
     notes: z.string().min(1).optional(),
@@ -61,5 +69,6 @@ export const dealsFileSchema = z.object({
 
 export type Chain = z.infer<typeof chainEnum>;
 export type Category = z.infer<typeof categoryEnum>;
+export type UsageMode = z.infer<typeof usageModeEnum>;
 export type Deal = z.infer<typeof dealSchema>;
 export type DealsFile = z.infer<typeof dealsFileSchema>;

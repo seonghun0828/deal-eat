@@ -76,6 +76,7 @@ Use these exact strings:
 - `deal_name`
 - `deal_price`
 - `discount_pct`
+- `usage_mode`
 - `valid_through`
 - `category`
 
@@ -95,6 +96,36 @@ Use these exact strings:
   of the computed rounded percentage
 - `deals` contains only complete records, not placeholders
 - missing chain data goes in `unavailable_chains`
+
+### Usage Mode
+
+`usage_mode` describes how the user activates the discount.
+`in_store_only` separately describes where the discount can be redeemed.
+
+Allowed values:
+
+- `app_coupon`
+- `app_order`
+- `store_order`
+- `general_promo`
+
+Recommended Korean UI labels:
+
+- `app_coupon` -> `앱 쿠폰`
+- `app_order` -> `앱 주문`
+- `store_order` -> `매장 주문`
+- `general_promo` -> no fixed compact label; show only when the context needs it
+
+Examples:
+
+- app coupon required, in-store redemption only:
+  `usage_mode: app_coupon`, `in_store_only: true`
+- no coupon, discounted when ordering in the app:
+  `usage_mode: app_order`
+- no coupon, discounted at counter or kiosk:
+  `usage_mode: store_order`
+- broad promotion across normal ordering flows:
+  `usage_mode: general_promo`
 
 ## Computed Behavior
 

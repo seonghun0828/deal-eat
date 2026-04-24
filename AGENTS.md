@@ -146,6 +146,7 @@ Use these exact values:
 - `deal_name`
 - `deal_price`
 - `discount_pct`
+- `usage_mode`
 - `valid_through`
 - `category`
 
@@ -166,6 +167,26 @@ Use these exact values:
 - validation errors should be specific enough to identify the broken record
 - `deals` must not contain placeholders or null records
 - `unavailable_chains` represents chains with no data for the current week
+
+### Usage Mode Rules
+
+`usage_mode` describes how the discount is activated. `in_store_only`
+separately describes where it can be redeemed. They are not mutually exclusive.
+
+Allowed `usage_mode` values:
+
+- `app_coupon`
+- `app_order`
+- `store_order`
+- `general_promo`
+
+Recommended Korean display labels:
+
+- `app_coupon` -> `앱 쿠폰`
+- `app_order` -> `앱 주문`
+- `store_order` -> `매장 주문`
+- `general_promo` -> no fixed compact label; surface it only when the context
+  needs explanation
 
 ### Newness Rules
 

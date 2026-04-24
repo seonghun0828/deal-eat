@@ -1,4 +1,4 @@
-import type { Chain } from '@/lib/schema';
+import type { Chain, UsageMode } from '@/lib/schema';
 
 const priceFormatter = new Intl.NumberFormat('ko-KR');
 
@@ -26,6 +26,15 @@ const chainDisplayNameMap: Record<Chain, string> = {
   'No Brand Burger': '노브랜드 버거',
 };
 
+const usageModeDisplayNameMap: Record<
+  Exclude<UsageMode, 'general_promo'>,
+  string
+> = {
+  app_coupon: '앱 쿠폰',
+  app_order: '앱 주문',
+  store_order: '매장 주문',
+};
+
 export const formatPrice = (value: number): string =>
   `₩${priceFormatter.format(value)}`;
 
@@ -37,4 +46,10 @@ export const formatShortDate = (value: string): string => {
 export const formatUpdatedAt = (value: string): string =>
   timestampFormatter.format(new Date(value));
 
-export const formatChainName = (chain: Chain): string => chainDisplayNameMap[chain];
+export const formatChainName = (chain: Chain): string =>
+  chainDisplayNameMap[chain];
+
+export const formatUsageMode = (usageMode: UsageMode): string | undefined =>
+  usageMode === 'general_promo'
+    ? undefined
+    : usageModeDisplayNameMap[usageMode];

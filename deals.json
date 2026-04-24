@@ -7,6 +7,7 @@
       "deal_price": 3800,
       "discount_pct": 36,
       "category": "hamburger_single",
+      "usage_mode": "app_coupon",
       "is_relaunched": false,
       "valid_through": "2026-04-27",
       "in_store_only": false
@@ -17,6 +18,7 @@
       "deal_price": 4300,
       "discount_pct": 31,
       "category": "hamburger_single",
+      "usage_mode": "app_order",
       "is_relaunched": false,
       "valid_through": "2026-04-27",
       "in_store_only": false,
@@ -28,6 +30,7 @@
       "deal_price": 3100,
       "discount_pct": 37,
       "category": "side",
+      "usage_mode": "app_coupon",
       "is_relaunched": false,
       "valid_through": "2026-04-27",
       "in_store_only": false
@@ -38,6 +41,7 @@
       "deal_price": 5000,
       "discount_pct": 25,
       "category": "hamburger_combo",
+      "usage_mode": "app_coupon",
       "is_relaunched": false,
       "valid_through": "2026-04-27",
       "in_store_only": false
@@ -49,6 +53,7 @@
       "deal_price": 6400,
       "discount_pct": 18,
       "category": "hamburger_set",
+      "usage_mode": "app_coupon",
       "launch_date": "2025-04-10",
       "valid_through": "2026-04-26",
       "in_store_only": false,
@@ -61,6 +66,7 @@
       "deal_price": 7200,
       "discount_pct": 19,
       "category": "hamburger_set",
+      "usage_mode": "app_coupon",
       "launch_date": "2025-04-10",
       "valid_through": "2026-04-26",
       "in_store_only": false,
@@ -73,6 +79,7 @@
       "deal_price": 8900,
       "discount_pct": 35,
       "category": "hamburger_set",
+      "usage_mode": "app_coupon",
       "launch_date": "2025-04-10",
       "valid_through": "2026-04-26",
       "in_store_only": false,
@@ -85,6 +92,7 @@
       "deal_price": 9900,
       "discount_pct": 37,
       "category": "hamburger_set",
+      "usage_mode": "app_coupon",
       "launch_date": "2025-04-10",
       "valid_through": "2026-04-26",
       "in_store_only": false,
@@ -97,6 +105,7 @@
       "deal_price": 5900,
       "discount_pct": 20,
       "category": "hamburger_single",
+      "usage_mode": "app_coupon",
       "valid_through": "2026-04-26",
       "in_store_only": false
     },
@@ -107,6 +116,7 @@
       "deal_price": 8500,
       "discount_pct": 16,
       "category": "hamburger_set",
+      "usage_mode": "app_coupon",
       "valid_through": "2026-04-26",
       "in_store_only": false
     },
@@ -117,6 +127,7 @@
       "deal_price": 1700,
       "discount_pct": 34,
       "category": "side",
+      "usage_mode": "app_coupon",
       "valid_through": "2026-04-26",
       "in_store_only": false
     },
@@ -127,6 +138,7 @@
       "deal_price": 3300,
       "discount_pct": 48,
       "category": "combo_other",
+      "usage_mode": "general_promo",
       "valid_through": "2026-04-27"
     },
     {
@@ -137,6 +149,7 @@
       "deal_price": 10000,
       "discount_pct": 33,
       "category": "hamburger_set",
+      "usage_mode": "app_coupon",
       "valid_through": "2026-05-04",
       "in_store_only": true
     },
@@ -147,6 +160,7 @@
       "deal_price": 6900,
       "discount_pct": 27,
       "category": "hamburger_set",
+      "usage_mode": "app_coupon",
       "valid_through": "2026-05-04",
       "in_store_only": true
     },
@@ -158,6 +172,7 @@
       "deal_price": 6900,
       "discount_pct": 15,
       "category": "hamburger_set",
+      "usage_mode": "app_coupon",
       "valid_through": "2026-05-04"
     },
     {
@@ -167,6 +182,7 @@
       "deal_price": 7900,
       "discount_pct": 23,
       "category": "hamburger_set",
+      "usage_mode": "app_coupon",
       "valid_through": "2026-05-04"
     },
     {
@@ -176,6 +192,7 @@
       "deal_price": 1600,
       "discount_pct": 38,
       "category": "side",
+      "usage_mode": "app_coupon",
       "valid_through": "2026-05-04"
     },
     {
@@ -185,8 +202,9 @@
       "deal_price": 4500,
       "discount_pct": 18,
       "category": "hamburger_single",
+      "usage_mode": "app_coupon",
       "valid_through": "2026-04-30",
-      "notes": "롯데잇츠 앱 내 쿠폰"
+      "notes": "롯데잇츠 앱"
     },
     {
       "chain": "Lotteria",
@@ -195,8 +213,9 @@
       "deal_price": 6000,
       "discount_pct": 26,
       "category": "hamburger_combo",
+      "usage_mode": "app_coupon",
       "valid_through": "2026-04-30",
-      "notes": "롯데잇츠 앱 내 쿠폰"
+      "notes": "롯데잇츠 앱"
     },
     {
       "chain": "Lotteria",
@@ -205,8 +224,9 @@
       "deal_price": 8500,
       "discount_pct": 21,
       "category": "hamburger_set",
+      "usage_mode": "app_coupon",
       "valid_through": "2026-04-30",
-      "notes": "롯데잇츠 앱 내 쿠폰"
+      "notes": "롯데잇츠 앱"
     }
   ],
   "unavailable_chains": ["Mom's Touch", "No Brand Burger"]
