@@ -34,27 +34,17 @@ export function DealsFeed({ data }: DealsFeedProps) {
   const hasResults = visibleDeals.length > 0;
 
   return (
-    <main className="mx-auto min-h-screen max-w-5xl py-8">
-      <section className="rounded-[36px] border border-[color:var(--line)] bg-[color:var(--panel)] p-6 shadow-[0_28px_80px_rgba(102,67,31,0.13)] backdrop-blur">
-        <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
-          매주 햄버거 할인 큐레이션
-        </p>
-        <div className="mt-3 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+    <main className="mx-auto min-h-screen max-w-5xl bg-[color:var(--panel)]">
+      <header className="px-4 pt-4 sm:px-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
-            <h1 className="max-w-2xl text-3xl font-semibold sm:text-4xl">
-              이번 주 버거 할인, 한 번에 확인하세요.
+            <h1 className="text-lg pl-1 pt-1 font-semibold uppercase tracking-[0.28em] text-[color:var(--foreground)]">
+              Burger Deal
             </h1>
-            <p className="mt-3 max-w-2xl text-base text-[color:var(--muted)] sm:text-lg">
-              브랜드 앱을 하나씩 열지 않고 주요 패스트푸드 할인 메뉴를 비교할 수
-              있어요.
-            </p>
-          </div>
-          <div className="rounded-[24px] border border-[color:var(--line)] bg-[color:var(--panel-strong)] px-4 py-3 text-sm text-[color:var(--muted)]">
-            마지막 업데이트: {formatUpdatedAt(data.updated_at)}
           </div>
         </div>
 
-        <div className="mt-6">
+        <div className="flex justify-end pt-2">
           <FilterSortModal
             filters={filters}
             isOpen={isOpen}
@@ -63,9 +53,11 @@ export function DealsFeed({ data }: DealsFeedProps) {
             sliderMax={sliderMax}
           />
         </div>
+      </header>
 
+      <section className="px-4 py-5 sm:px-6">
         {hasResults ? (
-          <div className="mt-6 grid gap-4">
+          <div className="grid gap-4">
             {visibleDeals.map((deal) => (
               <DealCard
                 deal={deal}
@@ -78,7 +70,7 @@ export function DealsFeed({ data }: DealsFeedProps) {
             ))}
           </div>
         ) : (
-          <section className="mt-6 rounded-[28px] border border-[color:var(--line)] bg-white/75 p-8 text-center">
+          <section className="rounded-[28px] border border-[color:var(--line)] bg-white/75 p-8 text-center">
             <p className="text-2xl font-semibold">
               이 조건에 맞는 할인이 없어요
             </p>

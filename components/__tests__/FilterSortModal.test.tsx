@@ -1,17 +1,17 @@
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
-import { FilterSortModal } from "@/components/FilterSortModal";
-import type { FiltersState } from "@/lib/filters";
+import { FilterSortModal } from '@/components/FilterSortModal';
+import type { FiltersState } from '@/lib/filters';
 
 const baseFilters: FiltersState = {
   selectedChains: [],
   maxPrice: 13000,
-  sortMode: "highest_discount",
+  sortMode: 'highest_discount',
 };
 
-describe("FilterSortModal", () => {
-  it("opens and allows selecting a brand", async () => {
+describe('FilterSortModal', () => {
+  it('opens the filter/sort modal from the compact trigger', async () => {
     const user = userEvent.setup();
     const onFiltersChange = vi.fn();
     const onOpenChange = vi.fn();
@@ -26,11 +26,11 @@ describe("FilterSortModal", () => {
       />,
     );
 
-    await user.click(screen.getByRole("button", { name: "필터 열기" }));
+    await user.click(screen.getByRole('button', { name: '필터/정렬' }));
     expect(onOpenChange).toHaveBeenCalledWith(true);
   });
 
-  it("renders options when open and changes sort mode", async () => {
+  it('renders the modal contents when open and changes sort mode', async () => {
     const user = userEvent.setup();
     const onFiltersChange = vi.fn();
 
@@ -44,14 +44,18 @@ describe("FilterSortModal", () => {
       />,
     );
 
-    await user.click(screen.getByRole("radio", { name: "햄버거 먼저" }));
+    expect(
+      screen.getByRole('dialog', { name: '필터와 정렬' }),
+    ).toBeInTheDocument();
+
+    await user.click(screen.getByRole('radio', { name: '햄버거 먼저' }));
     expect(onFiltersChange).toHaveBeenCalledWith({
       ...baseFilters,
-      sortMode: "hamburgers_first",
+      sortMode: 'hamburgers_first',
     });
   });
 
-  it("marks All as active when no brand filter is applied", () => {
+  it('marks All as active when no brand filter is applied', () => {
     render(
       <FilterSortModal
         filters={baseFilters}
@@ -62,9 +66,9 @@ describe("FilterSortModal", () => {
       />,
     );
 
-    expect(screen.getByRole("button", { name: "전체" })).toHaveAttribute(
-      "aria-pressed",
-      "true",
+    expect(screen.getByRole('button', { name: '전체' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
     );
   });
 });
