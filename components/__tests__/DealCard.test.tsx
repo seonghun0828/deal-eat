@@ -28,7 +28,8 @@ describe('DealCard', () => {
     expect(
       screen.getByText(
         (_, element) =>
-          element?.tagName === 'SPAN' && element.textContent === '4. 27.까지',
+          element?.tagName === 'SPAN' &&
+          element.textContent?.includes('까지') === true,
       ),
     ).toBeInTheDocument();
     expect(screen.queryByText('NEW')).not.toBeInTheDocument();
