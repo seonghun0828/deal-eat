@@ -52,6 +52,7 @@ export function FilterSortModal({
   return (
     <>
       <button
+        aria-label="필터/정렬"
         aria-expanded={isOpen}
         aria-haspopup="dialog"
         className="inline-flex items-center gap-2 rounded-full border border-[color:var(--line)] bg-[color:var(--panel-strong)] p-2 text-sm font-semibold text-[color:var(--foreground)] shadow-[0_12px_32px_rgba(102,67,31,0.08)]"
