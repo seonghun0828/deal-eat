@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
+import { GoogleTagManager } from '@next/third-parties/google';
 
 import './globals.css';
+
+const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
 
 export const metadata: Metadata = {
   title: '버거딜 | Burger Deal',
@@ -17,7 +20,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body>
+        {children}
+        {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
+      </body>
     </html>
   );
 }
