@@ -2,6 +2,7 @@
 
 import { brandLogoMap } from '@/lib/brand-assets';
 import { brandAppLinks } from '@/lib/brand-links';
+import { trackEvent } from '@/lib/analytics';
 import {
   formatCategory,
   formatChainName,
@@ -22,6 +23,10 @@ import {
 } from '@/components/ui/drawer';
 
 type DealBottomSheetProps = {
+  analyticsPayload?: Record<
+    string,
+    string | number | boolean | null | undefined
+  >;
   deal: Deal | null;
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -41,6 +46,7 @@ const getCtaLabel = (deal: Deal) => {
 };
 
 export function DealBottomSheet({
+  analyticsPayload,
   deal,
   open,
   onOpenChange,
@@ -133,20 +139,26 @@ export function DealBottomSheet({
             <div className="rounded-[28px] border border-[color:var(--line)] bg-white/70 p-5">
               <dl className="space-y-4">
                 <div className="flex items-start justify-between gap-4">
-                  <dt className="text-sm text-[color:var(--muted)]">사용 기한</dt>
+                  <dt className="text-sm text-[color:var(--muted)]">
+                    사용 기한
+                  </dt>
                   <dd className="text-right font-medium">
                     {formatShortDate(deal.valid_through)}까지
                   </dd>
                 </div>
                 {usageModeLabel ? (
                   <div className="flex items-start justify-between gap-4">
-                    <dt className="text-sm text-[color:var(--muted)]">사용 방식</dt>
+                    <dt className="text-sm text-[color:var(--muted)]">
+                      사용 방식
+                    </dt>
                     <dd className="text-right font-medium">{usageModeLabel}</dd>
                   </div>
                 ) : null}
                 {deal.in_store_only ? (
                   <div className="flex items-start justify-between gap-4">
-                    <dt className="text-sm text-[color:var(--muted)]">이용 장소</dt>
+                    <dt className="text-sm text-[color:var(--muted)]">
+                      이용 장소
+                    </dt>
                     <dd className="text-right font-medium">매장 전용</dd>
                   </div>
                 ) : null}
@@ -166,6 +178,9 @@ export function DealBottomSheet({
             <a
               className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full bg-[color:var(--accent)] px-5 py-3 text-sm font-semibold text-white"
               href={link.href}
+              onClick={() =>
+                trackEvent('deal_coupon_in_app_click', analyticsPayload ?? {})
+              }
               rel="noreferrer"
               target="_blank"
             >

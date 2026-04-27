@@ -1,18 +1,22 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { DealCard } from '@/components/DealCard';
 import { DealBottomSheet } from '@/components/DealBottomSheet';
 import { FilterSortModal } from '@/components/FilterSortModal';
 import { UnavailableChainCard } from '@/components/UnavailableChainCard';
 import {
+  buildDealEventPayload,
+  buildFilterEventPayload,
+  trackEvent,
+} from '@/lib/analytics';
+import {
   applyFiltersAndSort,
   DEFAULT_MAX_PRICE,
   getSliderMax,
   type FiltersState,
 } from '@/lib/filters';
-import { formatUpdatedAt } from '@/lib/format';
 import type { Deal, DealsFile } from '@/lib/schema';
 
 type DealsFeedProps = {
@@ -21,6 +25,7 @@ type DealsFeedProps = {
 
 export function DealsFeed({ data }: DealsFeedProps) {
   const sliderMax = getSliderMax(data.deals);
+  const filterSnapshotRef = useRef<FiltersState | null>(null);
 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedDeal, setSelectedDeal] = useState<Deal | null>(null);
@@ -32,6 +37,61 @@ export function DealsFeed({ data }: DealsFeedProps) {
 
   const visibleDeals = applyFiltersAndSort(data.deals, filters);
   const hasResults = visibleDeals.length > 0;
+  const selectedDealPosition =
+    selectedDeal === null
+      ? undefined
+      : visibleDeals.findIndex(
+          (deal) =>
+            deal.chain === selectedDeal.chain &&
+            deal.deal_name === selectedDeal.deal_name,
+        ) + 1 || undefined;
+
+  const handleFilterOpenChange = (nextOpen: boolean) => {
+    if (nextOpen) {
+      filterSnapshotRef.current = {
+        ...filters,
+        selectedChains: [...filters.selectedChains],
+      };
+      setIsOpen(true);
+      return;
+    }
+
+    if (isOpen) {
+      const snapshot = filterSnapshotRef.current ?? {
+        ...filters,
+        selectedChains: [...filters.selectedChains],
+      };
+      const currentPayload = buildFilterEventPayload(filters);
+      const snapshotPayload = buildFilterEventPayload(snapshot);
+      const eventName =
+        JSON.stringify(currentPayload) === JSON.stringify(snapshotPayload)
+          ? 'filter_sort_close_unchanged'
+          : 'filter_sort_commit';
+
+      trackEvent(eventName, currentPayload);
+    }
+
+    setIsOpen(false);
+  };
+
+  const handleSeeMore = (deal: Deal) => {
+    const position =
+      visibleDeals.findIndex(
+        (candidate) =>
+          candidate.chain === deal.chain &&
+          candidate.deal_name === deal.deal_name,
+      ) + 1;
+
+    trackEvent(
+      'deal_view_more_click',
+      buildDealEventPayload({
+        deal,
+        filters,
+        position,
+      }),
+    );
+    setSelectedDeal(deal);
+  };
 
   return (
     <main className="mx-auto min-h-screen max-w-5xl bg-[color:var(--panel)]">
@@ -49,7 +109,7 @@ export function DealsFeed({ data }: DealsFeedProps) {
             filters={filters}
             isOpen={isOpen}
             onFiltersChange={setFilters}
-            onOpenChange={setIsOpen}
+            onOpenChange={handleFilterOpenChange}
             sliderMax={sliderMax}
           />
         </div>
@@ -62,7 +122,7 @@ export function DealsFeed({ data }: DealsFeedProps) {
               <DealCard
                 deal={deal}
                 key={`${deal.chain}-${deal.deal_name}`}
-                onSeeMore={setSelectedDeal}
+                onSeeMore={handleSeeMore}
               />
             ))}
             {data.unavailable_chains.map((chain) => (
@@ -91,6 +151,15 @@ export function DealsFeed({ data }: DealsFeedProps) {
         )}
       </section>
       <DealBottomSheet
+        analyticsPayload={
+          selectedDeal
+            ? buildDealEventPayload({
+                deal: selectedDeal,
+                filters,
+                position: selectedDealPosition,
+              })
+            : undefined
+        }
         deal={selectedDeal}
         onOpenChange={(open) => {
           if (!open) {
