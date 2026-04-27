@@ -3,9 +3,8 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { vi } from 'vitest';
 
-import fixture from '@/deals.json';
 import { DealBottomSheet } from '@/components/DealBottomSheet';
-import { dealsFileSchema } from '@/lib/schema';
+import { testDeals } from '@/lib/__tests__/fixtures';
 
 const trackEvent = vi.fn();
 
@@ -64,15 +63,13 @@ vi.mock('@/components/ui/drawer', () => ({
   ),
 }));
 
-const parsedFixture = dealsFileSchema.parse(fixture);
-
 describe('DealBottomSheet', () => {
   beforeEach(() => {
     trackEvent.mockClear();
   });
 
   it('shows usage details and coupon CTA for an app coupon deal', () => {
-    const deal = parsedFixture.deals.find(
+    const deal = testDeals.find(
       (candidate) => candidate.usage_mode === 'app_coupon',
     );
 
@@ -88,7 +85,7 @@ describe('DealBottomSheet', () => {
   });
 
   it('shows store-only info inside the sheet', () => {
-    const deal = parsedFixture.deals.find(
+    const deal = testDeals.find(
       (candidate) => candidate.in_store_only === true,
     );
 
@@ -100,7 +97,7 @@ describe('DealBottomSheet', () => {
   });
 
   it('shows included items in the header description when present', () => {
-    const deal = parsedFixture.deals.find(
+    const deal = testDeals.find(
       (candidate) =>
         candidate.included_items !== undefined &&
         candidate.included_items.length > 0,
@@ -117,7 +114,7 @@ describe('DealBottomSheet', () => {
 
   it('tracks deal_coupon_in_app_click when the coupon CTA is pressed', async () => {
     const user = userEvent.setup();
-    const deal = parsedFixture.deals.find(
+    const deal = testDeals.find(
       (candidate) => candidate.usage_mode === 'app_coupon',
     );
 

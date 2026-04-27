@@ -1,9 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import fixture from '@/deals.json';
 import { DealsFeed } from '@/components/DealsFeed';
-import { dealsFileSchema } from '@/lib/schema';
+import { testDealsFile } from '@/lib/__tests__/fixtures';
 
 const trackEvent = vi.fn();
 
@@ -16,15 +15,13 @@ vi.mock('@/lib/analytics', async (importOriginal) => {
   };
 });
 
-const parsedFixture = dealsFileSchema.parse(fixture);
-
 describe('DealsFeed', () => {
   beforeEach(() => {
     trackEvent.mockClear();
   });
 
   it('renders the Burger Deal top bar and filter/sort trigger', () => {
-    render(<DealsFeed data={parsedFixture} />);
+    render(<DealsFeed data={testDealsFile} />);
 
     const topBar = screen.getByRole('banner');
 
@@ -37,7 +34,7 @@ describe('DealsFeed', () => {
   it('tracks deal_view_more_click when opening a deal bottom sheet', async () => {
     const user = userEvent.setup();
 
-    render(<DealsFeed data={parsedFixture} />);
+    render(<DealsFeed data={testDealsFile} />);
 
     await user.click(screen.getAllByRole('button', { name: '자세히 보기' })[0]!);
 
@@ -56,7 +53,7 @@ describe('DealsFeed', () => {
   it('tracks filter_sort_close_unchanged when the modal closes without changes', async () => {
     const user = userEvent.setup();
 
-    render(<DealsFeed data={parsedFixture} />);
+    render(<DealsFeed data={testDealsFile} />);
 
     await user.click(screen.getByRole('button', { name: '필터/정렬' }));
     await user.click(screen.getByRole('button', { name: '닫기' }));
@@ -72,7 +69,7 @@ describe('DealsFeed', () => {
   it('tracks filter_sort_commit with the final filter state when the modal closes after changes', async () => {
     const user = userEvent.setup();
 
-    render(<DealsFeed data={parsedFixture} />);
+    render(<DealsFeed data={testDealsFile} />);
 
     await user.click(screen.getByRole('button', { name: '필터/정렬' }));
     await user.click(screen.getByRole('button', { name: 'KFC' }));

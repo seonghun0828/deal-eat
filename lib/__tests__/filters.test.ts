@@ -1,4 +1,3 @@
-import fixture from "@/deals.json";
 import {
   applyFiltersAndSort,
   filterDeals,
@@ -6,14 +5,12 @@ import {
   sortDeals,
   type FiltersState,
 } from "@/lib/filters";
-import { dealsFileSchema } from "@/lib/schema";
-
-const deals = dealsFileSchema.parse(fixture).deals;
+import { testDeals as deals } from "@/lib/__tests__/fixtures";
 
 describe("filters", () => {
   it("filters by selected chain", () => {
     const result = filterDeals(deals, ["KFC"], 20000);
-    expect(result).toHaveLength(6);
+    expect(result).toHaveLength(2);
     expect(result.every((deal) => deal.chain === "KFC")).toBe(true);
   });
 
@@ -50,11 +47,11 @@ describe("filters", () => {
         ),
     ).toBe(true);
     expect(result.slice(0, 5).map((deal) => deal.discount_pct)).toEqual([
-      37,
       36,
       35,
       33,
       31,
+      26,
     ]);
   });
 
@@ -63,7 +60,7 @@ describe("filters", () => {
     const result = sortDeals(deals, "new_first", now);
 
     expect(result[0].deal_name).toBe("빵치짜만원박스");
-    expect(result[1].deal_name).toBe("살라미켄치짜세트");
+    expect(result[1].deal_name).toBe("트위스터 콤보");
   });
 
   it("applies filters and sort together", () => {
