@@ -1,7 +1,9 @@
 'use client';
 
+import { useState } from 'react';
+
 import { brandLogoMap } from '@/lib/brand-assets';
-import { brandAppLinks } from '@/lib/brand-links';
+import { getBrandAppLink, openBrandAppLink } from '@/lib/brand-links';
 import { trackEvent } from '@/lib/analytics';
 import {
   formatCategory,
@@ -51,13 +53,19 @@ export function DealBottomSheet({
   open,
   onOpenChange,
 }: DealBottomSheetProps) {
+  const [showDesktopNotice, setShowDesktopNotice] = useState(false);
+
   if (!deal) {
     return <Drawer onOpenChange={onOpenChange} open={open} />;
   }
 
   const displayChain = formatChainName(deal.chain);
   const usageModeLabel = formatUsageMode(deal.usage_mode);
-  const link = brandAppLinks[deal.chain];
+  const link = getBrandAppLink(
+    deal.chain,
+    typeof navigator === 'undefined' ? '' : navigator.userAgent,
+  );
+  const shouldShowDeepLinkNotice = link !== null && !link.isVerifiedDeepLink;
   const showBadge = isNew(deal.launch_date);
   const badgeLabel = deal.is_relaunched ? '재출시' : 'NEW';
   const includedItemsSummary = deal.included_items?.join(' · ');
@@ -175,17 +183,30 @@ export function DealBottomSheet({
           </section>
 
           <div className="flex flex-col gap-3 sm:flex-row">
-            <a
+            <button
               className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full bg-[color:var(--accent)] px-5 py-3 text-sm font-semibold text-white"
-              href={link.href}
-              onClick={() =>
-                trackEvent('deal_coupon_in_app_click', analyticsPayload ?? {})
-              }
-              rel="noreferrer"
-              target="_blank"
+              onClick={() => {
+                trackEvent('deal_coupon_in_app_click', analyticsPayload ?? {});
+                if (typeof navigator !== 'undefined' && typeof window !== 'undefined') {
+                  const resolvedLink = getBrandAppLink(deal.chain, navigator.userAgent);
+
+                  if (resolvedLink === null) {
+                    setShowDesktopNotice(true);
+                    return;
+                  }
+
+                  setShowDesktopNotice(false);
+                  openBrandAppLink(deal.chain, navigator.userAgent, {
+                    assign: (href) => {
+                      window.location.href = href;
+                    },
+                  });
+                }
+              }}
+              type="button"
             >
               {getCtaLabel(deal)}
-            </a>
+            </button>
             <DrawerClose asChild>
               <button
                 className="inline-flex min-h-12 items-center justify-center rounded-full border border-[color:var(--line)] bg-white px-5 py-3 text-sm font-semibold"
@@ -196,11 +217,16 @@ export function DealBottomSheet({
             </DrawerClose>
           </div>
 
-          {!link.isVerifiedDeepLink ? (
+          {shouldShowDeepLinkNotice ? (
             <p className="text-xs text-[color:var(--muted)]">
               현재 CTA는 브랜드 앱 링크 설정을 기반으로 연결됩니다. 실제 쿠폰
               화면으로 바로 이동하는 딥링크는 브랜드별로 추가 확인이 필요해요.
             </p>
+          ) : null}
+          {showDesktopNotice ? (
+            <div className="rounded-[20px] border border-[color:var(--line)] bg-white/70 px-4 py-3 text-sm text-[color:var(--muted)]">
+              모바일 앱에서 확인해 주세요.
+            </div>
           ) : null}
         </DrawerBody>
       </DrawerContent>

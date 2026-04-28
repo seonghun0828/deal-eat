@@ -7,6 +7,8 @@ import { DealBottomSheet } from '@/components/DealBottomSheet';
 import { testDeals } from '@/lib/__tests__/fixtures';
 
 const trackEvent = vi.fn();
+const openBrandAppLink = vi.fn();
+let mockedUserAgent = 'Mozilla/5.0 (Linux; Android 15)';
 
 vi.mock('@/lib/analytics', async (importOriginal) => {
   const actual = await importOriginal<typeof import('@/lib/analytics')>();
@@ -14,6 +16,24 @@ vi.mock('@/lib/analytics', async (importOriginal) => {
   return {
     ...actual,
     trackEvent: (...args: unknown[]) => trackEvent(...args),
+  };
+});
+
+vi.mock('@/lib/brand-links', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/lib/brand-links')>();
+
+  return {
+    ...actual,
+    getBrandAppLink: (...args: unknown[]) => {
+      const userAgent = args[1] as string;
+
+      if (/Macintosh/i.test(userAgent)) {
+        return null;
+      }
+
+      return actual.getBrandAppLink(args[0] as never, args[1] as never);
+    },
+    openBrandAppLink: (...args: unknown[]) => openBrandAppLink(...args),
   };
 });
 
@@ -66,6 +86,15 @@ vi.mock('@/components/ui/drawer', () => ({
 describe('DealBottomSheet', () => {
   beforeEach(() => {
     trackEvent.mockClear();
+    openBrandAppLink.mockClear();
+    mockedUserAgent = 'Mozilla/5.0 (Linux; Android 15)';
+    vi.stubGlobal('navigator', {
+      userAgent: mockedUserAgent,
+    });
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
   });
 
   it('shows usage details and coupon CTA for an app coupon deal', () => {
@@ -80,7 +109,7 @@ describe('DealBottomSheet', () => {
     expect(screen.getByText('사용 정보')).toBeInTheDocument();
     expect(screen.getAllByText('앱 쿠폰').length).toBeGreaterThan(0);
     expect(
-      screen.getByRole('link', { name: '앱에서 쿠폰 확인하기' }),
+      screen.getByRole('button', { name: '앱에서 쿠폰 확인하기' }),
     ).toBeInTheDocument();
   });
 
@@ -133,9 +162,7 @@ describe('DealBottomSheet', () => {
       />,
     );
 
-    await user.click(
-      screen.getByRole('link', { name: '앱에서 쿠폰 확인하기' }),
-    );
+    await user.click(screen.getByRole('button', { name: '앱에서 쿠폰 확인하기' }));
 
     expect(trackEvent).toHaveBeenCalledWith(
       'deal_coupon_in_app_click',
@@ -145,5 +172,33 @@ describe('DealBottomSheet', () => {
         usage_mode: deal!.usage_mode,
       }),
     );
+    expect(openBrandAppLink).toHaveBeenCalledWith(
+      deal!.chain,
+      expect.any(String),
+      expect.objectContaining({
+        assign: expect.any(Function),
+      }),
+    );
+  });
+
+  it('shows a mobile-only message on desktop instead of routing out', async () => {
+    const user = userEvent.setup();
+    const deal = testDeals.find(
+      (candidate) => candidate.usage_mode === 'app_coupon',
+    );
+
+    expect(deal).toBeDefined();
+
+    mockedUserAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 15_0)';
+    vi.stubGlobal('navigator', {
+      userAgent: mockedUserAgent,
+    });
+
+    render(<DealBottomSheet deal={deal!} onOpenChange={vi.fn()} open />);
+
+    await user.click(screen.getByRole('button', { name: '앱에서 쿠폰 확인하기' }));
+
+    expect(screen.getByText('모바일 앱에서 확인해 주세요.')).toBeInTheDocument();
+    expect(openBrandAppLink).not.toHaveBeenCalled();
   });
 });
