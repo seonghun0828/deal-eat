@@ -1,5 +1,5 @@
 import type { Chain, Deal } from './schema';
-import { isNew } from './isNew';
+import { isNew, todayKST } from './isNew';
 
 const HAMBURGER_CATEGORIES = new Set([
   'hamburger_single',
@@ -38,11 +38,13 @@ export const filterDeals = (
   deals: Deal[],
   selectedChains: Chain[],
   maxPrice: number,
+  now = new Date(),
 ): Deal[] =>
   deals.filter((deal) => {
     const matchesChain =
       selectedChains.length === 0 || selectedChains.includes(deal.chain);
-    return matchesChain && deal.deal_price <= maxPrice;
+    const isActive = deal.valid_through >= todayKST(0, now);
+    return matchesChain && deal.deal_price <= maxPrice && isActive;
   });
 
 export const sortDeals = (
@@ -96,7 +98,7 @@ export const applyFiltersAndSort = (
   now = new Date(),
 ): Deal[] =>
   sortDeals(
-    filterDeals(deals, filters.selectedChains, filters.maxPrice),
+    filterDeals(deals, filters.selectedChains, filters.maxPrice, now),
     filters.sortMode,
     now,
   );

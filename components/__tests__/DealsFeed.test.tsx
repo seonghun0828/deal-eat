@@ -41,8 +41,8 @@ describe('DealsFeed', () => {
     expect(trackEvent).toHaveBeenCalledWith(
       'deal_view_more_click',
       expect.objectContaining({
-        chain: 'KFC',
-        deal_name: '트위스터 콤보',
+        chain: "McDonald's",
+        deal_name: '맥스파이시 상하이 버거',
         position: 1,
         sort_mode: 'highest_discount',
         selected_chains: '',

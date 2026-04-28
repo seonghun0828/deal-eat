@@ -10,7 +10,7 @@ import { testDeals as deals } from "@/lib/__tests__/fixtures";
 describe("filters", () => {
   it("filters by selected chain", () => {
     const result = filterDeals(deals, ["KFC"], 20000);
-    expect(result).toHaveLength(2);
+    expect(result).toHaveLength(1);
     expect(result.every((deal) => deal.chain === "KFC")).toBe(true);
   });
 
@@ -19,6 +19,14 @@ describe("filters", () => {
     expect(result.every((deal) => deal.deal_price <= 5000)).toBe(true);
     expect(result.some((deal) => deal.chain === "McDonald's")).toBe(true);
     expect(result.some((deal) => deal.chain === "Lotteria")).toBe(true);
+  });
+
+  it("hides expired deals based on KST date", () => {
+    const now = new Date("2026-04-28T12:00:00+09:00");
+    const result = filterDeals(deals, [], 20000, now);
+
+    expect(result.some((deal) => deal.deal_name === "트위스터 콤보")).toBe(false);
+    expect(result.some((deal) => deal.deal_name === "감자튀김")).toBe(true);
   });
 
   it("sorts by highest discount", () => {
@@ -73,6 +81,7 @@ describe("filters", () => {
     const result = applyFiltersAndSort(deals, filters);
     expect(result.every((deal) => deal.chain !== "KFC")).toBe(true);
     expect(result.every((deal) => deal.deal_price <= 7000)).toBe(true);
+    expect(result).toHaveLength(2);
     expect(result[0].discount_pct).toBeGreaterThanOrEqual(result[1].discount_pct);
   });
 

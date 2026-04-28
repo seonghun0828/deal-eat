@@ -7,7 +7,7 @@ export const baseDeal: Deal = {
   discount_pct: 36,
   category: 'hamburger_single',
   usage_mode: 'app_coupon',
-  valid_through: '2026-04-27',
+  valid_through: '2026-05-04',
 };
 
 export const testDeals: Deal[] = [
@@ -39,7 +39,7 @@ export const testDeals: Deal[] = [
       '코카콜라(R)',
       '프렌치프라이(R)',
     ],
-    valid_through: '2026-04-26',
+    valid_through: '2026-05-03',
   },
   {
     chain: 'KFC',
@@ -66,7 +66,7 @@ export const testDeals: Deal[] = [
     discount_pct: 31,
     category: 'hamburger_single',
     usage_mode: 'app_order',
-    valid_through: '2026-04-27',
+    valid_through: '2026-05-04',
     notes: 'M오더 전용',
   },
   {
@@ -76,7 +76,7 @@ export const testDeals: Deal[] = [
     discount_pct: 26,
     category: 'hamburger_combo',
     usage_mode: 'app_coupon',
-    valid_through: '2026-04-29',
+    valid_through: '2026-05-04',
   },
   {
     chain: 'No Brand Burger',
@@ -85,7 +85,7 @@ export const testDeals: Deal[] = [
     discount_pct: 34,
     category: 'side',
     usage_mode: 'store_order',
-    valid_through: '2026-04-30',
+    valid_through: '2026-05-04',
   },
 ];
 
@@ -94,4 +94,3 @@ export const testDealsFile: DealsFile = {
   deals: testDeals,
   unavailable_chains: ["Mom's Touch"],
 };
-
