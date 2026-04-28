@@ -7,27 +7,27 @@ export type BrandAppLink = {
 
 export const brandAppLinks: Record<Chain, BrandAppLink> = {
   "McDonald's": {
-    href: 'https://play.google.com/store/apps/details?id=com.mcdonalds.mobileapp',
+    href: 'intent://www.mcdonaldsapps.com/app#Intent;scheme=https;package=com.mcdonalds.mobileapp;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.mcdonalds.mobileapp%26hl%3Dko;end',
     isVerifiedDeepLink: false,
   },
   'Burger King': {
-    href: 'https://play.google.com/store/apps/details?id=kr.co.burgerkinghybrid',
+    href: 'intent://#Intent;scheme=burgerking;package=kr.co.burgerkinghybrid;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dkr.co.burgerkinghybrid%26hl%3Dko;end',
     isVerifiedDeepLink: false,
   },
   KFC: {
-    href: 'https://play.google.com/store/apps/details?id=kfc_ko.kore.kg.kfc_korea',
+    href: 'intent://main#Intent;scheme=kfcremaster;package=kfc_ko.kore.kg.kfc_korea;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dkfc_ko.kore.kg.kfc_korea%26hl%3Dko;end',
     isVerifiedDeepLink: false,
   },
   Lotteria: {
-    href: 'https://play.google.com/store/apps/details?id=kr.co.angelinus.gift.m',
+    href: 'intent://run#Intent;scheme=lottegrs;package=kr.co.angelinus.gift.m;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dkr.co.angelinus.gift.m%26hl%3Dko;end',
     isVerifiedDeepLink: false,
   },
   "Mom's Touch": {
-    href: 'https://play.google.com/store/apps/details?id=kr.co.momstouch.moms',
+    href: 'intent://default#Intent;scheme=moms;package=kr.co.momstouch.moms;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dkr.co.momstouch.moms%26hl%3Dko;end',
     isVerifiedDeepLink: false,
   },
   'No Brand Burger': {
-    href: 'https://play.google.com/store/apps/details?id=com.nbbmobileorder.shinsegaefood',
+    href: 'intent://#Intent;scheme=nobrandburger;package=com.nbbmobileorder.shinsegaefood;S.browser_fallback_url=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.nbbmobileorder.shinsegaefood%26hl%3Dko;end',
     isVerifiedDeepLink: false,
   },
 };
