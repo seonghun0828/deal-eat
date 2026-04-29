@@ -95,7 +95,7 @@ export function DealsFeed({ data }: DealsFeedProps) {
 
   return (
     <main className="mx-auto min-h-screen max-w-5xl bg-[color:var(--panel)]">
-      <header className="px-4 pt-4 sm:px-6">
+      <header className="px-6 pt-8 sm:px-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h1 className="text-lg pl-1 pt-1 font-semibold uppercase tracking-[0.28em] text-[color:var(--foreground)]">

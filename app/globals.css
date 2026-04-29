@@ -26,7 +26,6 @@ body {
   min-height: 100vh;
   color: var(--foreground);
   background: transparent;
-  font-family: Georgia, "Times New Roman", serif;
 }
 
 button,
@@ -39,4 +38,3 @@ a {
   color: inherit;
   text-decoration: none;
 }
-

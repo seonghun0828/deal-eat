@@ -76,7 +76,7 @@ export function DealCard({ deal, now = new Date(), onSeeMore }: DealCardProps) {
         </span>
       </div>
 
-      <div className="mt-4 flex justify-end">
+      <div className="flex justify-end">
         <button
           className="min-h-11 rounded-full border border-[color:var(--line)] bg-white px-4 py-2 text-sm font-semibold"
           onClick={() => onSeeMore?.(deal)}
