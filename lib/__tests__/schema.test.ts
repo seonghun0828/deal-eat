@@ -1,16 +1,18 @@
-import fixture from "@/deals.json";
-import { dealsFileSchema } from "@/lib/schema";
+import { testDealsFile } from '@/lib/__tests__/fixtures';
+import { dealsFileSchema } from '@/lib/schema';
+
+const fixture = structuredClone(testDealsFile);
 
 const dealWithOriginalPrice = fixture.deals.find(
   (deal) => deal.original_price !== undefined,
 );
 
-describe("dealsFileSchema", () => {
-  it("parses a valid deals file", () => {
+describe('dealsFileSchema', () => {
+  it('parses a valid deals file', () => {
     expect(() => dealsFileSchema.parse(fixture)).not.toThrow();
   });
 
-  it("requires usage_mode", () => {
+  it('requires usage_mode', () => {
     const invalid = {
       ...fixture,
       deals: fixture.deals.map(({ usage_mode, ...deal }, index) =>
@@ -21,13 +23,13 @@ describe("dealsFileSchema", () => {
     expect(() => dealsFileSchema.parse(invalid)).toThrow();
   });
 
-  it("rejects an invalid chain enum", () => {
+  it('rejects an invalid chain enum', () => {
     const invalid = {
       ...fixture,
       deals: [
         {
           ...fixture.deals[0],
-          chain: "Shake Shack",
+          chain: 'Shake Shack',
         },
       ],
     };
@@ -53,13 +55,13 @@ describe("dealsFileSchema", () => {
     );
   });
 
-  it("rejects an invalid usage_mode", () => {
+  it('rejects an invalid usage_mode', () => {
     const invalid = {
       ...fixture,
       deals: [
         {
           ...fixture.deals[0],
-          usage_mode: "coupon_book",
+          usage_mode: 'coupon_book',
         },
       ],
     };
@@ -67,13 +69,13 @@ describe("dealsFileSchema", () => {
     expect(() => dealsFileSchema.parse(invalid)).toThrow();
   });
 
-  it("rejects empty strings in included_items", () => {
+  it('rejects empty strings in included_items', () => {
     const invalid = {
       ...fixture,
       deals: [
         {
           ...fixture.deals[0],
-          included_items: ["", "콜라"],
+          included_items: ['', '콜라'],
         },
       ],
     };

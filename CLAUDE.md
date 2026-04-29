@@ -86,6 +86,8 @@ const isNew = (launch_date?: string): boolean => {
 
 **Logo fallback:** `<img onError>` falls back to text chain name if SVG is missing.
 
+**Test data policy:** Unit/component tests must use stable mock fixtures rather than live data.
+
 ## Skill routing
 
 When the user's request matches an available skill, ALWAYS invoke it using the Skill

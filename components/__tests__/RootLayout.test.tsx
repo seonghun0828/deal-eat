@@ -4,12 +4,11 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 const googleTagManagerSpy = vi.fn(
   ({ gtmId }: { gtmId: string }) => <div data-testid="gtm">{gtmId}</div>,
 );
-const notoSansKrSpy = vi.fn(() => ({
-  className: 'font-noto-sans-kr',
+const interSpy = vi.fn(() => ({
+  className: 'font-inter',
   style: {
-    fontFamily: '"Noto Sans KR", sans-serif',
+    fontFamily: '"Inter", sans-serif',
   },
-  variable: '--font-body',
 }));
 
 vi.mock('@next/third-parties/google', () => ({
@@ -17,7 +16,7 @@ vi.mock('@next/third-parties/google', () => ({
 }));
 
 vi.mock('next/font/google', () => ({
-  Noto_Sans_KR: (config: unknown) => notoSansKrSpy(config),
+  Inter: (config: unknown) => interSpy(config),
 }));
 
 const originalGtmId = process.env.NEXT_PUBLIC_GTM_ID;
@@ -33,7 +32,7 @@ describe('RootLayout', () => {
   beforeEach(() => {
     vi.resetModules();
     googleTagManagerSpy.mockClear();
-    notoSansKrSpy.mockClear();
+    interSpy.mockClear();
   });
 
   afterEach(() => {
@@ -74,24 +73,24 @@ describe('RootLayout', () => {
       {
         alt: 'Burger Deal 대표 이미지',
         height: 630,
-        url: '/og-placeholder.png',
+        url: '/assets/og_image.png',
         width: 1200,
       },
     ]);
     expect(layoutModule.metadata.twitter).toMatchObject({
       card: 'summary_large_image',
-      images: ['/og-placeholder.png'],
+      images: ['/assets/og_image.png'],
     });
   });
 
-  it('applies the Noto Sans KR font class to the body', async () => {
+  it('applies the Inter font class to the body', async () => {
     const layoutModule = await import('@/app/layout');
     const RootLayout = layoutModule.default;
     const element = RootLayout({
       children: <div>child</div>,
     });
 
-    expect(element.props.children.props.className).toBe('font-noto-sans-kr');
-    expect(notoSansKrSpy).toHaveBeenCalled();
+    expect(element.props.children.props.className).toBe('font-inter');
+    expect(interSpy).toHaveBeenCalled();
   });
 });

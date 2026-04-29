@@ -258,6 +258,12 @@ The approved minimum test targets are:
 - `lib/__tests__/schema.test.ts`
 - `lib/__tests__/filters.test.ts`
 - `lib/__tests__/isNew.test.ts`
+
+Test data policy:
+
+- unit and component tests must use stable mock fixtures, not live data
+- if a test depends on time-sensitive fields like `valid_through`, use fixed mock
+  data inside test fixtures
 - `components/__tests__/DealCard.test.tsx`
 - `components/__tests__/FilterSortModal.test.tsx`
 - `e2e/empty-state.spec.ts`
