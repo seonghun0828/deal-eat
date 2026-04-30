@@ -16,7 +16,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: '버거딜 | Burger Deal',
-  description: '매주 햄버거 할인 큐레이션 해드립니다!',
+  description: '진짜 쓸만한 버거 할인들만 모았습니다.',
   metadataBase: new URL(siteUrl),
   alternates: {
     canonical: '/',
