@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     locale: 'ko_KR',
     siteName: 'Burger Deal',
     title: '버거딜 | Burger Deal',
-    description: '매주 햄버거 할인 큐레이션 해드립니다!',
+    description: '진짜 쓸만한 버거 할인들만 모았습니다.',
     url: '/',
     images: [
       {
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: '버거딜 | Burger Deal',
-    description: '매주 햄버거 할인 큐레이션 해드립니다!',
+    description: '진짜 쓸만한 버거 할인들만 모았습니다.',
     images: ['/assets/og_image.png'],
   },
   robots: {
