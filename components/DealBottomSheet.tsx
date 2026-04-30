@@ -61,11 +61,6 @@ export function DealBottomSheet({
 
   const displayChain = formatChainName(deal.chain);
   const usageModeLabel = formatUsageMode(deal.usage_mode);
-  const link = getBrandAppLink(
-    deal.chain,
-    typeof navigator === 'undefined' ? '' : navigator.userAgent,
-  );
-  const shouldShowDeepLinkNotice = link !== null && !link.isVerifiedDeepLink;
   const showBadge = isNew(deal.launch_date);
   const badgeLabel = deal.is_relaunched ? '재출시' : 'NEW';
   const includedItemsSummary = deal.included_items?.join(' · ');
@@ -187,8 +182,14 @@ export function DealBottomSheet({
               className="inline-flex min-h-12 flex-1 items-center justify-center rounded-full bg-[color:var(--accent)] px-5 py-3 text-sm font-semibold text-white"
               onClick={() => {
                 trackEvent('deal_coupon_in_app_click', analyticsPayload ?? {});
-                if (typeof navigator !== 'undefined' && typeof window !== 'undefined') {
-                  const resolvedLink = getBrandAppLink(deal.chain, navigator.userAgent);
+                if (
+                  typeof navigator !== 'undefined' &&
+                  typeof window !== 'undefined'
+                ) {
+                  const resolvedLink = getBrandAppLink(
+                    deal.chain,
+                    navigator.userAgent,
+                  );
 
                   if (resolvedLink === null) {
                     setShowDesktopNotice(true);
@@ -217,12 +218,6 @@ export function DealBottomSheet({
             </DrawerClose>
           </div>
 
-          {shouldShowDeepLinkNotice ? (
-            <p className="text-xs text-[color:var(--muted)]">
-              현재 CTA는 브랜드 앱 링크 설정을 기반으로 연결됩니다. 실제 쿠폰
-              화면으로 바로 이동하는 딥링크는 브랜드별로 추가 확인이 필요해요.
-            </p>
-          ) : null}
           {showDesktopNotice ? (
             <div className="rounded-[20px] border border-[color:var(--line)] bg-white/70 px-4 py-3 text-sm text-[color:var(--muted)]">
               모바일 앱에서 확인해 주세요.
