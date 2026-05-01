@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-04-27T10:10:00+09:00",
+  "updated_at": "2026-05-01T10:50:00+09:00",
   "deals": [
     {
       "chain": "McDonald's",
@@ -81,17 +81,6 @@
     },
     {
       "chain": "KFC",
-      "deal_name": "트위스터 콤보",
-      "original_price": 6400,
-      "deal_price": 3300,
-      "discount_pct": 48,
-      "category": "combo_other",
-      "usage_mode": "general_promo",
-      "included_items": ["트위스터", "탄산음료M"],
-      "valid_through": "2026-04-27"
-    },
-    {
-      "chain": "KFC",
       "deal_name": "빵치짜만원박스",
       "launch_date": "2026-04-14",
       "original_price": 14900,
@@ -158,10 +147,10 @@
     },
     {
       "chain": "Lotteria",
-      "deal_name": "클래식치즈버거",
-      "original_price": 5500,
-      "deal_price": 4500,
-      "discount_pct": 18,
+      "deal_name": "더블 데리버거",
+      "original_price": 5000,
+      "deal_price": 4200,
+      "discount_pct": 16,
       "category": "hamburger_single",
       "usage_mode": "app_coupon",
       "valid_through": "2026-04-30",
@@ -169,10 +158,21 @@
     },
     {
       "chain": "Lotteria",
-      "deal_name": "리아 새우 베이컨 콤보",
-      "original_price": 8100,
+      "deal_name": "리아 불고기베이컨",
+      "original_price": 6100,
+      "deal_price": 5200,
+      "discount_pct": 15,
+      "category": "hamburger_single",
+      "usage_mode": "app_coupon",
+      "valid_through": "2026-04-30",
+      "notes": "롯데잇츠 앱"
+    },
+    {
+      "chain": "Lotteria",
+      "deal_name": "핫크리스피 콤보",
+      "original_price": 8200,
       "deal_price": 6000,
-      "discount_pct": 26,
+      "discount_pct": 27,
       "category": "hamburger_combo",
       "usage_mode": "app_coupon",
       "valid_through": "2026-04-30",
@@ -180,14 +180,46 @@
     },
     {
       "chain": "Lotteria",
-      "deal_name": "1인팩(불고기버거+양념감자+치즈스틱+콜라1잔)",
-      "original_price": 10700,
-      "deal_price": 8500,
-      "discount_pct": 21,
+      "deal_name": "1인팩",
+      "original_price": 11100,
+      "deal_price": 8000,
+      "discount_pct": 25,
       "category": "hamburger_set",
       "usage_mode": "app_coupon",
-      "valid_through": "2026-04-30",
+      "valid_through": "2026-05-31",
+      "included_items": ["클래식치즈", "양념감자", "치즈스틱", "콜라(R)1잔"],
       "notes": "롯데잇츠 앱"
+    },
+    {
+      "chain": "Lotteria",
+      "deal_name": "토네이도 초코쿠키",
+      "original_price": 3200,
+      "deal_price": 2500,
+      "discount_pct": 22,
+      "category": "side",
+      "usage_mode": "app_coupon",
+      "valid_through": "2026-05-31",
+      "notes": "롯데잇츠 앱"
+    },
+    {
+      "chain": "No Brand Burger",
+      "deal_name": "에그 치즈 불고기 무료 세트업",
+      "original_price": 6600,
+      "deal_price": 4700,
+      "discount_pct": 29,
+      "category": "hamburger_set",
+      "usage_mode": "app_coupon",
+      "valid_through": "2026-05-10"
+    },
+    {
+      "chain": "No Brand Burger",
+      "deal_name": "치즈스틱 1+1",
+      "original_price": 5200,
+      "deal_price": 2600,
+      "discount_pct": 50,
+      "category": "side",
+      "usage_mode": "app_coupon",
+      "valid_through": "2026-05-10"
     }
   ],
   "unavailable_chains": ["Mom's Touch", "No Brand Burger"]
