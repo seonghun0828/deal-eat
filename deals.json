@@ -147,11 +147,12 @@
       "launch_date": "2026-04-14",
       "original_price": 8100,
       "deal_price": 6500,
-      "discount_pct": 15,
+      "discount_pct": 20,
       "category": "hamburger_set",
       "usage_mode": "app_coupon",
       "valid_through": "2026-05-18",
-      "in_store_only": true
+      "in_store_only": true,
+      "notes": "앱에 할인율 잘못 나와있음(15%가 아니고 20%)"
     },
     {
       "chain": "KFC",
