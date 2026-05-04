@@ -115,31 +115,30 @@
     },
     {
       "chain": "KFC",
-      "deal_name": "빵치짜만원박스",
-      "launch_date": "2026-04-14",
-      "original_price": 14900,
-      "deal_price": 10000,
-      "discount_pct": 33,
+      "deal_name": "징거BLT박스",
+      "original_price": 11400,
+      "deal_price": 8900,
+      "discount_pct": 22,
       "category": "hamburger_set",
       "usage_mode": "app_coupon",
       "included_items": [
-        "살라미빵치짜",
+        "징거BLT",
         "핫크리스피통다리",
-        "코울슬로",
+        "프렌치프라이M",
         "콜라M"
       ],
-      "valid_through": "2026-05-04",
+      "valid_through": "2026-05-18",
       "in_store_only": true
     },
     {
       "chain": "KFC",
-      "deal_name": "치즈징거통다리세트",
-      "original_price": 9400,
-      "deal_price": 6900,
-      "discount_pct": 27,
+      "deal_name": "징거세트",
+      "original_price": 8100,
+      "deal_price": 6500,
+      "discount_pct": 20,
       "category": "hamburger_set",
       "usage_mode": "app_coupon",
-      "valid_through": "2026-05-04",
+      "valid_through": "2026-05-11",
       "in_store_only": true
     },
     {
@@ -147,37 +146,42 @@
       "deal_name": "살라미켄치짜세트",
       "launch_date": "2026-04-14",
       "original_price": 8100,
-      "deal_price": 6900,
+      "deal_price": 6500,
       "discount_pct": 15,
       "category": "hamburger_set",
       "usage_mode": "app_coupon",
-      "valid_through": "2026-05-04"
+      "valid_through": "2026-05-18",
+      "in_store_only": true
     },
     {
       "chain": "KFC",
-      "deal_name": "징거박스",
-      "original_price": 10200,
-      "deal_price": 7900,
-      "discount_pct": 23,
+      "deal_name": "징거타워세트",
+      "original_price": 9100,
+      "deal_price": 6900,
+      "discount_pct": 24,
       "category": "hamburger_set",
       "usage_mode": "app_coupon",
-      "included_items": [
-        "징거버거",
-        "핫크리스피통다리",
-        "프렌치프라이M",
-        "콜라M"
-      ],
-      "valid_through": "2026-05-04"
+      "valid_through": "2026-05-18"
     },
     {
       "chain": "KFC",
-      "deal_name": "트러플치르르프라이",
-      "original_price": 2600,
-      "deal_price": 1600,
-      "discount_pct": 38,
+      "deal_name": "징거",
+      "original_price": 5900,
+      "deal_price": 3900,
+      "discount_pct": 34,
+      "category": "hamburger_single",
+      "usage_mode": "app_coupon",
+      "valid_through": "2026-05-18"
+    },
+    {
+      "chain": "KFC",
+      "deal_name": "켚스낵(너겟4조각+트러플치르르프라이)",
+      "original_price": 5300,
+      "deal_price": 2900,
+      "discount_pct": 45,
       "category": "side",
       "usage_mode": "app_coupon",
-      "valid_through": "2026-05-04"
+      "valid_through": "2026-06-10"
     },
     {
       "chain": "Lotteria",
