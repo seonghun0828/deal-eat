@@ -14,12 +14,17 @@ export type BrandAppLink = {
 };
 
 const appStoreLinks: Record<Chain, string> = {
-  "McDonald's": 'https://apps.apple.com/kr/app/%EB%A7%A5%EB%8F%84%EB%82%A0%EB%93%9C/id1217507712',
-  'Burger King': 'https://apps.apple.com/kr/app/%EB%B2%84%EA%B1%B0%ED%82%B9-%ED%96%84%EB%B2%84%EA%B1%B0-%ED%82%B9%EC%98%A4%EB%8D%94-%EB%94%9C%EB%A6%AC%EB%B2%84%EB%A6%AC/id1017567032',
+  "McDonald's":
+    'https://apps.apple.com/kr/app/%EB%A7%A5%EB%8F%84%EB%82%A0%EB%93%9C/id1217507712',
+  'Burger King':
+    'https://apps.apple.com/kr/app/%EB%B2%84%EA%B1%B0%ED%82%B9-%ED%96%84%EB%B2%84%EA%B1%B0-%ED%82%B9%EC%98%A4%EB%8D%94-%EB%94%9C%EB%A6%AC%EB%B2%84%EB%A6%AC/id1017567032',
   KFC: 'https://apps.apple.com/kr/app/kfc-korea/id1255799839',
-  Lotteria: 'https://apps.apple.com/us/app/%EB%A1%AF%EB%8D%B0%EC%9E%87%EC%B8%A0-lotteeatz/id939521328?l=ko',
-  "Mom's Touch": 'https://apps.apple.com/kr/app/%EB%A7%98%EC%8A%A4%ED%84%B0%EC%B9%98/id6475806498',
-  'No Brand Burger': 'https://apps.apple.com/us/app/%EB%85%B8%EB%B8%8C%EB%9E%9C%EB%93%9C%EB%B2%84%EA%B1%B0/id1576782382',
+  Lotteria:
+    'https://apps.apple.com/us/app/%EB%A1%AF%EB%8D%B0%EC%9E%87%EC%B8%A0-lotteeatz/id939521328?l=ko',
+  "Mom's Touch":
+    'https://apps.apple.com/kr/app/%EB%A7%98%EC%8A%A4%ED%84%B0%EC%B9%98/id6475806498',
+  'No Brand Burger':
+    'https://apps.apple.com/us/app/%EB%85%B8%EB%B8%8C%EB%9E%9C%EB%93%9C%EB%B2%84%EA%B1%B0/id1576782382',
 };
 
 const playStoreLinks: Record<Chain, string> = {
@@ -27,8 +32,7 @@ const playStoreLinks: Record<Chain, string> = {
     'https://play.google.com/store/apps/details?id=com.mcdonalds.mobileapp&hl=ko',
   'Burger King':
     'https://play.google.com/store/apps/details?id=kr.co.burgerkinghybrid&hl=ko',
-  KFC:
-    'https://play.google.com/store/apps/details?id=kfc_ko.kore.kg.kfc_korea&hl=ko',
+  KFC: 'https://play.google.com/store/apps/details?id=kfc_ko.kore.kg.kfc_korea&hl=ko',
   Lotteria:
     'https://play.google.com/store/apps/details?id=kr.co.angelinus.gift.m&hl=ko',
   "Mom's Touch":
@@ -57,7 +61,7 @@ export const brandAppLinks: Record<Chain, BrandAppLink> = {
       isVerifiedDeepLink: false,
     },
     ios: {
-      href: appStoreLinks['Burger King'],
+      href: 'burgerking://',
       fallbackHref: appStoreLinks['Burger King'],
       isVerifiedDeepLink: false,
     },
@@ -69,7 +73,7 @@ export const brandAppLinks: Record<Chain, BrandAppLink> = {
       isVerifiedDeepLink: false,
     },
     ios: {
-      href: appStoreLinks.KFC,
+      href: 'kfcremaster://',
       fallbackHref: appStoreLinks.KFC,
       isVerifiedDeepLink: false,
     },
