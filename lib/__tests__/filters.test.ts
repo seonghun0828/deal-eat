@@ -8,14 +8,16 @@ import {
 import { testDeals as deals } from "@/lib/__tests__/fixtures";
 
 describe("filters", () => {
+  const fixtureNow = new Date("2026-04-21T12:00:00+09:00");
+
   it("filters by selected chain", () => {
-    const result = filterDeals(deals, ["KFC"], 20000);
-    expect(result).toHaveLength(1);
+    const result = filterDeals(deals, ["KFC"], 20000, fixtureNow);
+    expect(result).toHaveLength(2);
     expect(result.every((deal) => deal.chain === "KFC")).toBe(true);
   });
 
   it("filters by max price", () => {
-    const result = filterDeals(deals, [], 5000);
+    const result = filterDeals(deals, [], 5000, fixtureNow);
     expect(result.every((deal) => deal.deal_price <= 5000)).toBe(true);
     expect(result.some((deal) => deal.chain === "McDonald's")).toBe(true);
     expect(result.some((deal) => deal.chain === "Lotteria")).toBe(true);
@@ -78,7 +80,7 @@ describe("filters", () => {
       sortMode: "highest_discount",
     };
 
-    const result = applyFiltersAndSort(deals, filters);
+    const result = applyFiltersAndSort(deals, filters, fixtureNow);
     expect(result.every((deal) => deal.chain !== "KFC")).toBe(true);
     expect(result.every((deal) => deal.deal_price <= 7000)).toBe(true);
     expect(result).toHaveLength(2);

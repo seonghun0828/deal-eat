@@ -16,12 +16,14 @@ vi.mock('@/lib/analytics', async (importOriginal) => {
 });
 
 describe('DealsFeed', () => {
+  const fixtureNow = new Date('2026-04-28T12:00:00+09:00');
+
   beforeEach(() => {
     trackEvent.mockClear();
   });
 
   it('renders the Burger Deal top bar and filter/sort trigger', () => {
-    render(<DealsFeed data={testDealsFile} />);
+    render(<DealsFeed data={testDealsFile} now={fixtureNow} />);
 
     const topBar = screen.getByRole('banner');
 
@@ -34,7 +36,7 @@ describe('DealsFeed', () => {
   it('tracks deal_view_more_click when opening a deal bottom sheet', async () => {
     const user = userEvent.setup();
 
-    render(<DealsFeed data={testDealsFile} />);
+    render(<DealsFeed data={testDealsFile} now={fixtureNow} />);
 
     await user.click(screen.getAllByRole('button', { name: '자세히 보기' })[0]!);
 
@@ -53,7 +55,7 @@ describe('DealsFeed', () => {
   it('tracks filter_sort_close_unchanged when the modal closes without changes', async () => {
     const user = userEvent.setup();
 
-    render(<DealsFeed data={testDealsFile} />);
+    render(<DealsFeed data={testDealsFile} now={fixtureNow} />);
 
     await user.click(screen.getByRole('button', { name: '필터/정렬' }));
     await user.click(screen.getByRole('button', { name: '닫기' }));
@@ -69,7 +71,7 @@ describe('DealsFeed', () => {
   it('tracks filter_sort_commit with the final filter state when the modal closes after changes', async () => {
     const user = userEvent.setup();
 
-    render(<DealsFeed data={testDealsFile} />);
+    render(<DealsFeed data={testDealsFile} now={fixtureNow} />);
 
     await user.click(screen.getByRole('button', { name: '필터/정렬' }));
     await user.click(screen.getByRole('button', { name: 'KFC' }));

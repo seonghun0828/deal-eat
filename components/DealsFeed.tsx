@@ -21,9 +21,10 @@ import type { Deal, DealsFile } from '@/lib/schema';
 
 type DealsFeedProps = {
   data: DealsFile;
+  now?: Date;
 };
 
-export function DealsFeed({ data }: DealsFeedProps) {
+export function DealsFeed({ data, now }: DealsFeedProps) {
   const sliderMax = getSliderMax(data.deals);
   const filterSnapshotRef = useRef<FiltersState | null>(null);
 
@@ -35,7 +36,7 @@ export function DealsFeed({ data }: DealsFeedProps) {
     sortMode: 'highest_discount',
   });
 
-  const visibleDeals = applyFiltersAndSort(data.deals, filters);
+  const visibleDeals = applyFiltersAndSort(data.deals, filters, now);
   const hasResults = visibleDeals.length > 0;
   const selectedDealPosition =
     selectedDeal === null
