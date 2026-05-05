@@ -61,7 +61,7 @@ export const brandAppLinks: Record<Chain, BrandAppLink> = {
       isVerifiedDeepLink: false,
     },
     ios: {
-      href: 'burgerking://',
+      href: appStoreLinks['Burger King'],
       fallbackHref: appStoreLinks['Burger King'],
       isVerifiedDeepLink: false,
     },
@@ -73,7 +73,7 @@ export const brandAppLinks: Record<Chain, BrandAppLink> = {
       isVerifiedDeepLink: false,
     },
     ios: {
-      href: 'kfcremaster://',
+      href: appStoreLinks.KFC,
       fallbackHref: appStoreLinks.KFC,
       isVerifiedDeepLink: false,
     },
