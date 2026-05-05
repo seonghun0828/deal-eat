@@ -33,7 +33,7 @@ export function DealsFeed({ data, now }: DealsFeedProps) {
   const [filters, setFilters] = useState<FiltersState>({
     selectedChains: [],
     maxPrice: Math.min(DEFAULT_MAX_PRICE, sliderMax),
-    sortMode: 'highest_discount',
+    sortMode: 'hamburgers_first',
   });
 
   const visibleDeals = applyFiltersAndSort(data.deals, filters, now);

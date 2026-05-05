@@ -38,7 +38,9 @@ describe('DealsFeed', () => {
 
     render(<DealsFeed data={testDealsFile} now={fixtureNow} />);
 
-    await user.click(screen.getAllByRole('button', { name: '자세히 보기' })[0]!);
+    await user.click(
+      screen.getAllByRole('button', { name: '자세히 보기' })[0]!,
+    );
 
     expect(trackEvent).toHaveBeenCalledWith(
       'deal_view_more_click',
@@ -46,7 +48,7 @@ describe('DealsFeed', () => {
         chain: "McDonald's",
         deal_name: '맥스파이시 상하이 버거',
         position: 1,
-        sort_mode: 'highest_discount',
+        sort_mode: 'hamburgers_first',
         selected_chains: '',
       }),
     );
@@ -64,7 +66,7 @@ describe('DealsFeed', () => {
       selected_chains: '',
       selected_chain_count: 0,
       max_price: 13000,
-      sort_mode: 'highest_discount',
+      sort_mode: 'hamburgers_first',
     });
   });
 

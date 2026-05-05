@@ -16,8 +16,8 @@ const CHAINS: Chain[] = [
 ];
 
 const sortOptions: Array<{ value: SortMode; label: string }> = [
-  { value: 'highest_discount', label: '할인율 높은 순' },
   { value: 'hamburgers_first', label: '햄버거 먼저' },
+  { value: 'highest_discount', label: '할인율 높은 순' },
   { value: 'new_first', label: '신규/재출시 먼저' },
 ];
 
