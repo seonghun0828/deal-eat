@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react';
 
+import { BrandChips } from '@/components/BrandChips';
 import { DealCard } from '@/components/DealCard';
 import { DealBottomSheet } from '@/components/DealBottomSheet';
 import { FilterSortModal } from '@/components/FilterSortModal';
@@ -105,7 +106,18 @@ export function DealsFeed({ data, now }: DealsFeedProps) {
           </div>
         </div>
 
-        <div className="flex justify-end pt-2">
+        <div className="pt-2">
+          <BrandChips
+            isFilterSortOpen={isOpen}
+            onOpenFilterSort={() => handleFilterOpenChange(true)}
+            onSelectedChainsChange={(selectedChains) =>
+              setFilters({
+                ...filters,
+                selectedChains,
+              })
+            }
+            selectedChains={filters.selectedChains}
+          />
           <FilterSortModal
             filters={filters}
             isOpen={isOpen}

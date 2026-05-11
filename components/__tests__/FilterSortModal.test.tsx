@@ -11,12 +11,11 @@ const baseFilters: FiltersState = {
 };
 
 describe('FilterSortModal', () => {
-  it('opens the filter/sort modal from the compact trigger', async () => {
-    const user = userEvent.setup();
+  it('renders nothing while closed', () => {
     const onFiltersChange = vi.fn();
     const onOpenChange = vi.fn();
 
-    render(
+    const { container } = render(
       <FilterSortModal
         filters={baseFilters}
         isOpen={false}
@@ -26,8 +25,7 @@ describe('FilterSortModal', () => {
       />,
     );
 
-    await user.click(screen.getByRole('button', { name: '필터/정렬' }));
-    expect(onOpenChange).toHaveBeenCalledWith(true);
+    expect(container).toBeEmptyDOMElement();
   });
 
   it('renders the modal contents when open and changes sort mode', async () => {
@@ -55,7 +53,7 @@ describe('FilterSortModal', () => {
     });
   });
 
-  it('marks All as active when no brand filter is applied', () => {
+  it('does not render brand controls inside the modal', () => {
     render(
       <FilterSortModal
         filters={baseFilters}
@@ -66,9 +64,7 @@ describe('FilterSortModal', () => {
       />,
     );
 
-    expect(screen.getByRole('button', { name: '전체' })).toHaveAttribute(
-      'aria-pressed',
-      'true',
-    );
+    expect(screen.queryByText('브랜드')).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: '전체' })).not.toBeInTheDocument();
   });
 });

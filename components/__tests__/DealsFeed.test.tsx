@@ -75,16 +75,16 @@ describe('DealsFeed', () => {
 
     render(<DealsFeed data={testDealsFile} now={fixtureNow} />);
 
-    await user.click(screen.getByRole('button', { name: '필터/정렬' }));
     await user.click(screen.getByRole('button', { name: 'KFC' }));
-    await user.click(screen.getByRole('radio', { name: '햄버거 먼저' }));
+    await user.click(screen.getByRole('button', { name: '필터/정렬' }));
+    await user.click(screen.getByRole('radio', { name: '할인율 높은 순' }));
     await user.click(screen.getByRole('button', { name: '닫기' }));
 
     expect(trackEvent).toHaveBeenCalledWith('filter_sort_commit', {
       selected_chains: 'KFC',
       selected_chain_count: 1,
       max_price: 13000,
-      sort_mode: 'hamburgers_first',
+      sort_mode: 'highest_discount',
     });
   });
 });
