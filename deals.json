@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-18T09:00:00+09:00",
+  "updated_at": "2026-05-19T09:00:00+09:00",
   "deals": [
     {
       "chain": "McDonald's",
@@ -125,64 +125,66 @@
     },
     {
       "chain": "KFC",
-      "deal_name": "징거BLT박스",
-      "original_price": 11400,
-      "deal_price": 8900,
-      "discount_pct": 22,
+      "deal_name": "징거타워세트",
+      "original_price": 9100,
+      "deal_price": 7500,
+      "discount_pct": 18,
       "category": "hamburger_set",
       "usage_mode": "app_coupon",
-      "included_items": [
-        "징거BLT",
-        "핫크리스피통다리",
-        "프렌치프라이M",
-        "콜라M"
-      ],
-      "valid_through": "2026-05-18",
+      "valid_through": "2026-06-01",
       "in_store_only": true
     },
     {
       "chain": "KFC",
       "deal_name": "징거세트",
       "original_price": 8100,
-      "deal_price": 6500,
-      "discount_pct": 20,
+      "deal_price": 5500,
+      "discount_pct": 32,
       "category": "hamburger_set",
       "usage_mode": "app_coupon",
-      "valid_through": "2026-05-11",
+      "valid_through": "2026-06-01",
       "in_store_only": true
     },
     {
       "chain": "KFC",
-      "deal_name": "살라미켄치짜세트",
-      "launch_date": "2026-04-14",
-      "original_price": 8100,
-      "deal_price": 6500,
-      "discount_pct": 20,
-      "category": "hamburger_set",
-      "usage_mode": "app_coupon",
-      "valid_through": "2026-05-18",
-      "in_store_only": true,
-      "notes": "앱에 할인율 잘못 나와있음(15%가 아니고 20%)"
-    },
-    {
-      "chain": "KFC",
-      "deal_name": "징거타워세트",
-      "original_price": 9100,
+      "deal_name": "클래식징거통다리세트",
+      "original_price": 8700,
       "deal_price": 6900,
-      "discount_pct": 24,
+      "discount_pct": 21,
       "category": "hamburger_set",
       "usage_mode": "app_coupon",
-      "valid_through": "2026-05-18"
+      "valid_through": "2026-06-01",
+      "in_store_only": true
     },
     {
       "chain": "KFC",
-      "deal_name": "징거",
-      "original_price": 5900,
-      "deal_price": 3900,
-      "discount_pct": 34,
+      "deal_name": "트위스터세트",
+      "original_price": 6400,
+      "deal_price": 4900,
+      "discount_pct": 23,
+      "category": "side",
+      "usage_mode": "app_coupon",
+      "valid_through": "2026-06-01"
+    },
+    {
+      "chain": "KFC",
+      "deal_name": "텐더2조각",
+      "original_price": 3200,
+      "deal_price": 2000,
+      "discount_pct": 38,
+      "category": "side",
+      "usage_mode": "app_coupon",
+      "valid_through": "2026-06-01"
+    },
+    {
+      "chain": "KFC",
+      "deal_name": "징거타워",
+      "original_price": 6900,
+      "deal_price": 5300,
+      "discount_pct": 23,
       "category": "hamburger_single",
       "usage_mode": "app_coupon",
-      "valid_through": "2026-05-18"
+      "valid_through": "2026-06-01"
     },
     {
       "chain": "KFC",
