@@ -1,72 +1,61 @@
 {
-  "updated_at": "2026-06-15T10:00:00+09:00",
+  "updated_at": "2026-06-22T10:00:00+09:00",
   "deals": [
     {
       "chain": "McDonald's",
-      "deal_name": "후렌치 후라이 M + 아이스크림콘",
-      "deal_price": 3000,
-      "discount_pct": 27,
-      "category": "side",
+      "deal_name": "맥치킨",
+      "deal_price": 2700,
+      "discount_pct": 23,
+      "category": "hamburger_single",
       "usage_mode": "app_coupon",
       "is_relaunched": false,
-      "valid_through": "2026-06-21",
+      "valid_through": "2026-06-28",
       "in_store_only": false,
       "notes": "오후 한정 (2:00 PM ~ 6:00 PM)"
     },
     {
       "chain": "McDonald's",
-      "deal_name": "캬라멜 팝콘 맥플러리",
-      "deal_price": 2300,
-      "discount_pct": 45,
+      "deal_name": "상하이 치킨 스낵랩",
+      "deal_price": 1800,
+      "discount_pct": 49,
       "category": "side",
       "usage_mode": "app_coupon",
       "is_relaunched": false,
-      "valid_through": "2026-06-22",
+      "valid_through": "2026-06-28",
       "in_store_only": false
     },
     {
       "chain": "McDonald's",
-      "deal_name": "불고기 버거",
-      "deal_price": 2500,
+      "deal_name": "맥크리스피 치킨 클래식",
+      "deal_price": 3900,
       "discount_pct": 34,
       "category": "hamburger_single",
       "usage_mode": "app_coupon",
       "is_relaunched": false,
-      "valid_through": "2026-06-22",
+      "valid_through": "2026-06-28",
       "in_store_only": false
     },
     {
       "chain": "McDonald's",
-      "deal_name": "빅맥",
-      "deal_price": 4000,
-      "discount_pct": 30,
+      "deal_name": "슈비 버거",
+      "deal_price": 4300,
+      "discount_pct": 31,
       "category": "hamburger_single",
       "usage_mode": "app_order",
       "is_relaunched": false,
-      "valid_through": "2026-06-22",
+      "valid_through": "2026-06-28",
       "in_store_only": false,
       "notes": "M오더 전용"
     },
     {
       "chain": "McDonald's",
-      "deal_name": "슈비 버거 + 탄산 음료 M",
-      "deal_price": 6300,
-      "discount_pct": 23,
+      "deal_name": "맥앤치즈 더블 치즈 + 탄산 음료 M",
+      "deal_price": 8200,
+      "discount_pct": 19,
       "category": "hamburger_combo",
       "usage_mode": "app_coupon",
       "is_relaunched": false,
-      "valid_through": "2026-06-22",
-      "in_store_only": false
-    },
-    {
-      "chain": "McDonald's",
-      "deal_name": "초코 선데이 아이스크림",
-      "deal_price": 1700,
-      "discount_pct": 29,
-      "category": "side",
-      "usage_mode": "app_coupon",
-      "is_relaunched": false,
-      "valid_through": "2026-06-22",
+      "valid_through": "2026-06-28",
       "in_store_only": false
     },
     {
@@ -101,24 +90,24 @@
     },
     {
       "chain": "Burger King",
-      "deal_name": "와퍼",
-      "original_price": 7400,
-      "deal_price": 5900,
-      "discount_pct": 20,
+      "deal_name": "치즈와퍼",
+      "original_price": 8000,
+      "deal_price": 6500,
+      "discount_pct": 18,
       "category": "hamburger_single",
       "usage_mode": "app_coupon",
-      "valid_through": "2026-06-21",
+      "valid_through": "2026-06-28",
       "in_store_only": false
     },
     {
       "chain": "Burger King",
-      "deal_name": "갈릭불고기와퍼 세트",
-      "original_price": 9900,
-      "deal_price": 8200,
+      "deal_name": "불고기와퍼 세트",
+      "original_price": 9600,
+      "deal_price": 7900,
       "discount_pct": 17,
       "category": "hamburger_single",
       "usage_mode": "app_coupon",
-      "valid_through": "2026-06-21",
+      "valid_through": "2026-06-26",
       "in_store_only": false
     },
     {
@@ -129,7 +118,7 @@
       "discount_pct": 17,
       "category": "hamburger_single",
       "usage_mode": "app_coupon",
-      "valid_through": "2026-06-23",
+      "valid_through": "2026-06-26",
       "in_store_only": false,
       "launch_date": "2026-06-15"
     },
@@ -141,7 +130,7 @@
       "discount_pct": 17,
       "category": "hamburger_single",
       "usage_mode": "app_coupon",
-      "valid_through": "2026-06-23",
+      "valid_through": "2026-06-26",
       "in_store_only": false,
       "launch_date": "2026-06-15"
     },
@@ -153,20 +142,46 @@
       "discount_pct": 17,
       "category": "hamburger_single",
       "usage_mode": "app_coupon",
-      "valid_through": "2026-06-23",
+      "valid_through": "2026-06-26",
       "in_store_only": false,
       "launch_date": "2026-06-15"
     },
     {
       "chain": "Burger King",
-      "deal_name": "쉐이킹프라이 스윗어니언",
+      "deal_name": "쉐이킹프라이 구운갈릭",
       "original_price": 2600,
       "deal_price": 1700,
       "discount_pct": 34,
       "category": "side",
       "usage_mode": "app_coupon",
-      "valid_through": "2026-06-21",
+      "valid_through": "2026-06-28",
       "in_store_only": false
+    },
+    {
+      "chain": "Burger King",
+      "deal_name": "흑임자 킹퓨전",
+      "original_price": 3900,
+      "deal_price": 3300,
+      "discount_pct": 15,
+      "category": "side",
+      "usage_mode": "app_coupon",
+      "valid_through": "2026-06-28",
+      "launch_date": "2026-06-15",
+      "in_store_only": false,
+      "notes": "09~00시까지"
+    },
+    {
+      "chain": "Burger King",
+      "deal_name": "말차 킹퓨전",
+      "original_price": 3900,
+      "deal_price": 3300,
+      "discount_pct": 15,
+      "category": "side",
+      "usage_mode": "app_coupon",
+      "valid_through": "2026-06-28",
+      "launch_date": "2026-06-15",
+      "in_store_only": false,
+      "notes": "09~00시까지"
     },
     {
       "chain": "KFC",
@@ -299,14 +314,14 @@
     },
     {
       "chain": "No Brand Burger",
-      "deal_name": "NBB 어메이징 더블 업 무료 세트업",
-      "original_price": 7900,
-      "deal_price": 6000,
-      "discount_pct": 24,
+      "deal_name": "에그 치즈 불고기 무료 세트업",
+      "original_price": 6600,
+      "deal_price": 4700,
+      "discount_pct": 29,
       "category": "hamburger_set",
       "usage_mode": "app_coupon",
-      "valid_through": "2026-06-11"
+      "valid_through": "2026-06-30"
     }
   ],
-  "unavailable_chains": ["Mom's Touch", "No Brand Burger"]
+  "unavailable_chains": ["Mom's Touch"]
 }
